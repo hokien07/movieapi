@@ -18,6 +18,7 @@ class CreateCronDetailTable extends Migration
             $table->unsignedBigInteger('cron_id')->index();
             $table->foreign('cron_id')->references('id')->on('crons')->onDelete('cascade');
             $table->json('payload');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
