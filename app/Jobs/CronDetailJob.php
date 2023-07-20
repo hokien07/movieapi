@@ -46,8 +46,18 @@ class CronDetailJob implements ShouldQueue
         try {
             $movie = $this->storeMovie($content->movie);
             $actorIds = $this->storeActor($content->movie->actor);
+            $movie->actors()->sync($actorIds);
 
-            $actors = Actor::query()->insertGetId();
+            $directors = $this->storeDirector($content->movie->drictor);
+            $movie->directors()->sync($directors);
+
+            $countries = $this->storeCountry($content->movie->country);
+            $movie->countries()->sync($countries);
+
+            $categories = $this->storeCategory($content->movie->category);
+            $movie->categories()->sync($categories);
+
+
             DB::commit();
         }catch (\Exception $e) {
             DB::rollBack();
@@ -65,7 +75,10 @@ class CronDetailJob implements ShouldQueue
             if($temp) {
                 array_push($ids, $temp->id);
             }else {
-                // Sotre actor
+                $item = Actor::query()->create([
+                    'name' => $actor
+                ]);
+                array_push($ids, $item->id);
             }
         }
     }
