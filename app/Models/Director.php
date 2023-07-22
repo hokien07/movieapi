@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Director extends Model
 {
     use HasFactory;
-    protected $table = "director";
+    protected $table = "directors";
     protected $fillable = ["name", "avatar", "age", "gender", "country"];
 
     protected static function booted()

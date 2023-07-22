@@ -20,7 +20,6 @@ class CreateMoviesTable extends Migration
             $table->string("origin_name", 50)->unique()->index();
             $table->string('slug',50)->unique()->index();
             $table->text('description')->nullable();
-            $table->date('release_date');
             $table->string('type',20);
             $table->string('status', 20)->default('ongoing');
             $table->string('thumb_url')->nullable();

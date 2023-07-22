@@ -9,7 +9,7 @@ class CronDetail extends Model
 {
     use HasFactory;
     protected $table = "cron_detail";
-    protected $fillable = ["cron_id", "payload"];
+    protected $fillable = ["cron_id", "payload", "status"];
 
     protected static function booted()
     {

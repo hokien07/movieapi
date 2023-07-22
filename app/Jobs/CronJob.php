@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Cron;
 use App\Models\CronDetail;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -16,37 +17,52 @@ class CronJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private string $baseUrl;
-    private int $start;
 
     /**
      * Create a new job instance.
      *
-     * @param int $start
      */
-    public function __construct(int $start)
+    public function __construct()
     {
         $this->baseUrl = config('cron.list');
-        $this->start = $start;
     }
 
     /**
      * Execute the job.
      *
      * @return void
+     * @throws GuzzleException
      */
     public function handle()
     {
-        $client = new Client();
 
-        $content = $client->get("$this->baseUrl$this->start");
+        $cron = Cron::query()->whereDate('date', now())->first();
+        if($cron) {
+            $start = $cron->current + 1;
+            if($start == $cron->total) {
+                $cron->fill(['status' => 1])->save();
+                return;
+            }
+        }else {
+            $start = 1;
+            $cron = Cron::query()->create([
+                "date" => now(),
+                "total" => 0,
+                "current" => 0,
+                "status" => 0
+            ]);
+        }
+
+        $client = new Client();
+        $content = $client->get("$this->baseUrl$start");
         $content = json_decode($content->getBody()->getContents());
 
-        $cron = Cron::query()->create([
+        $cron->fill([
             "date" => now(),
             "total" => $content->pagination->totalPages,
-            "current" => $content->pagination->currentPage,
+            "current" => $start,
             "status" => 0
-        ]);
+        ])->save();
 
         if($cron) {
             $details = [];

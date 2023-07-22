@@ -37,19 +37,23 @@ class Movie extends Model
     ];
 
     public function actors () {
-        return $this->belongsToMany(Actor::class, "actor_movie", 'actor_id', 'movie_id');
+        return $this->belongsToMany(Actor::class, "actor_movie", 'movie_id', 'actor_id');
     }
 
     public function directors () {
-        return $this->belongsToMany(Director::class, "director_movie", 'director_id', 'movie_id');
+        return $this->belongsToMany(Director::class, "director_movie", 'movie_id', 'director_id');
     }
 
     public function countries () {
-        return $this->belongsToMany(Country::class, "country_movie", 'country_id', 'movie_id');
+        return $this->belongsToMany(Country::class, "country_movie", 'movie_id', 'country_id');
     }
 
     public function episodes () {
-        return $this->belongsToMany(Episode::class, "movie_episode", 'episode_id', 'movie_id');
+        return $this->belongsToMany(Episode::class, "movie_episode", 'movie_id', 'episode_id');
+    }
+
+    public function categories () {
+        return $this->belongsToMany(Category::class, 'category_movie', 'movie_id', 'category_id');
     }
 
     protected static function booted()

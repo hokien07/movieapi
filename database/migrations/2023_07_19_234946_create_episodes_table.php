@@ -21,6 +21,9 @@ class CreateEpisodesTable extends Migration
             $table->string('file_name');
             $table->string('link_embed')->nullable();
             $table->string('link_m3u8')->nullable();
+            $table->unsignedInteger('server_id')->index();
+            $table->foreign('server_id')->references('id')->on('servers')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
