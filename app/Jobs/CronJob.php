@@ -36,7 +36,7 @@ class CronJob implements ShouldQueue
     public function handle()
     {
 
-        $cron = Cron::query()->whereDate('date', now())->first();
+        $cron = Cron::query()->where('status', 0)->first();
         if($cron) {
             $start = $cron->current + 1;
             if($start == $cron->total) {

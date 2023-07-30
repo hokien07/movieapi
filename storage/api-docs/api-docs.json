@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Movie Api Documentation",
+        "description": "From L5 Swagger",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0."
+    },
+    "servers": [
+        {
+            "url": "http://movieapi.local",
+            "description": "Develop API Server"
+        }
+    ],
+    "paths": {
+        "/api/movie/popular": {
+            "get": {
+                "tags": [
+                    "movie"
+                ],
+                "summary": "Get pupular movie",
+                "operationId": "5abaf89d24e27639a8031c75b2b31d26",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/movie/trend": {
+            "get": {
+                "tags": [
+                    "movie"
+                ],
+                "summary": "Get trend movie",
+                "operationId": "9f21653ef33ab7e676e9f87df89b900e",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/movie/top-rate": {
+            "get": {
+                "tags": [
+                    "movie"
+                ],
+                "summary": "Get Top Rate movie",
+                "operationId": "ab06780cdc0513d2f68e2f3de6411ff2",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}
