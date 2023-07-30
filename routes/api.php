@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('movie')->name('movie.')->group(function () {
+    Route::get("/trend", [\App\Http\Controllers\Api\HomeApiController::class, 'trend'])->name('trend');
+    Route::get("/popular", [\App\Http\Controllers\Api\HomeApiController::class, 'popular'])->name('popular');
+    Route::get("/top-rate", [\App\Http\Controllers\Api\HomeApiController::class, 'topRate'])->name('top.rate');
+    Route::get('/detail/{serverId}', [\App\Http\Controllers\Api\HomeApiController::class, 'detail'])->name('detail');
 });
