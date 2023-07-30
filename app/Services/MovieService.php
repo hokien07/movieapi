@@ -24,7 +24,7 @@ class MovieService extends ModelService
     }
 
     public function findByServerId ($serverId) {
-        return $this->model->withAll()->where('server_id', $serverId)->first();
+        return $this->model->query()->where('server_id', $serverId)->first();
     }
 
 

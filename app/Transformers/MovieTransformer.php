@@ -12,6 +12,8 @@ class MovieTransformer extends TransformerAbstract
 
     public function transform(Movie $movie)
     {
+        if(is_null($movie)) return null;
+
         return [
             "name" => $movie->name,
             "origin_name" =>$movie->origin_name,
@@ -34,6 +36,7 @@ class MovieTransformer extends TransformerAbstract
             "show_time"  => $movie->showtimes,
             "year" => $movie->year,
             "view" => $movie->view,
+            "server_id" => $movie->server_id,
         ];
     }
 }

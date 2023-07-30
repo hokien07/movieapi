@@ -16,6 +16,20 @@
         }
     ],
     "paths": {
+        "/api/cat": {
+            "get": {
+                "tags": [
+                    "cat"
+                ],
+                "summary": "Get all cat",
+                "operationId": "481c448d8202b4f5ab240ac37c7d8d6c",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/movie/popular": {
             "get": {
                 "tags": [
@@ -54,6 +68,36 @@
                 "responses": {
                     "200": {
                         "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/movie/detail/{serverId}": {
+            "get": {
+                "tags": [
+                    "movie"
+                ],
+                "summary": "Get movie detail by serverId",
+                "operationId": "893bfb5604ab9ca10da60a217117cb44",
+                "parameters": [
+                    {
+                        "name": "serverId",
+                        "in": "path",
+                        "description": "Server id of movie",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }
