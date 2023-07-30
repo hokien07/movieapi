@@ -20,3 +20,7 @@ Route::prefix('movie')->name('movie.')->group(function () {
     Route::get("/top-rate", [\App\Http\Controllers\Api\HomeApiController::class, 'topRate'])->name('top.rate');
     Route::get('/detail/{serverId}', [\App\Http\Controllers\Api\HomeApiController::class, 'detail'])->name('detail');
 });
+
+Route::prefix('cat')->name('cat.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Api\CatApiController::class, 'index'])->name('home');
+});
