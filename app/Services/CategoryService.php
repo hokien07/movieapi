@@ -16,4 +16,8 @@ class CategoryService extends ModelService
     public function getAll () {
         return $this->model->all();
     }
+
+    public function getBySlug ($slug) {
+        return $this->model->where('slug', $slug)->first();
+    }
 }
