@@ -18,14 +18,14 @@
             <div class="bixbox animefull">
                 <div class="bigcover">
                     <div class="ime">
-                        <a href="{{route('movie', $movie->slug)}}" class="lnk" aria-label="Xem phim {{$movie->name}}"></a>
+                        <a href="{{route('movie.view', $movie->slug)}}" class="lnk" aria-label="Xem phim {{$movie->name}}"></a>
                         <img
                             decoding="async" data-type="lazy"
                             src="{{$movie->poster}}"
                             data-src="{{$movie->poster}}"
                             alt="{{$movie->name}}"/>
                     </div>
-                    <a href="{{route('movie', $movie->slug)}}" class="gp" aria-label="Xem phim {{$movie->name}}"><i class="far fa-play-circle" aria-hidden="true"></i></a>
+                    <a href="{{route('movie.view', $movie->slug)}}" class="gp" aria-label="Xem phim {{$movie->name}}"><i class="far fa-play-circle" aria-hidden="true"></i></a>
                 </div>
                 <div class="bigcontent">
                     <div class="thumbook">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <a style="display: block"
-                               href="{{route('movie', $movie->slug)}}" class="bookmark">
+                               href="{{route('movie.view', $movie->slug)}}" class="bookmark">
                                 <i class="far fa-play-circle" aria-hidden="true"></i> Xem Phim</a>
                         </div>
                     </div>
@@ -111,8 +111,7 @@
                 </div>
                 <div class="bottom tags">
                     <a href="{{route('movie', $movie->slug)}}" title="Phim {{$movie->name}}" rel="tag">{{$movie->name}}</a>
-                    <a href="{{route('movie', $movie->slug)}}"
-                                     title="Phim {{$movie->origin_name}}" rel="tag">{{$movie->origin_name}}</a>
+                    <a href="{{route('movie', $movie->slug)}}" title="Phim {{$movie->origin_name}}" rel="tag">{{$movie->origin_name}}</a>
                 </div>
             </div>
             <div class='socialts' hidden>
@@ -140,7 +139,7 @@
                 <div class="cmt commentx">
                     <div class="box-comment" id="tabs-facebook"
                          style="background: linear-gradient(to right, #ffff, #ffff);">
-                        <div class="fb-comments" data-href="https://www.xemphim.sbs/phim/phap-su-dai-tai"
+                        <div class="fb-comments" data-href="{{route('movie', $movie->slug)}}"
                              data-width="100%"
                              data-numposts="10" data-order-by="reverse_time" data-colorscheme="light">
                         </div>

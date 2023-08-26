@@ -32,8 +32,8 @@ class ViewServiceProvider extends ServiceProvider
     {
         \Illuminate\Support\Facades\View::composer(['layouts.nav', 'errors.404'], CatComposer::class);
         \Illuminate\Support\Facades\View::composer(['layouts.nav', 'errors.404'], CountryComposer::class);
-        \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'home'], TopPhimBoComposer::class);
-        \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'home'], TopPhimLeComposer::class);
-        \Illuminate\Support\Facades\View::composer(['layouts.sidebar'], PhimSapChieuComposer::class);
+        \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'home', 'view'], TopPhimBoComposer::class);
+        \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'home', 'view'], TopPhimLeComposer::class);
+        \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'view'], PhimSapChieuComposer::class);
     }
 }

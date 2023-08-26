@@ -1,4 +1,5 @@
-<head><meta name="slurp" content="index,follow"/>
+<head>
+    <meta name="slurp" content="index,follow"/>
     <meta charSet="utf-8"/>
     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
     <meta name="robots" content="index,follow"/>
