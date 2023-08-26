@@ -41,7 +41,7 @@
                             <div class="extras">
                                 <div class="extra-category">
                                     @foreach($phim->categories as $cat)
-                                        <a href="{{route('category', $cat->slug)}}" tite="{{$cat->name}}" rel="tag">{{$cat->name}}</a> {{$loop->last ? "" : ","}}
+                                        <a href="{{route('category', $cat->slug)}}" title="{{$cat->name}}" rel="tag">{{$cat->name}}</a> {{$loop->last ? "" : ","}}
                                     @endforeach
                                 </div>
                             </div>

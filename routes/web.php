@@ -27,4 +27,12 @@ Route::middleware('web')->group(function() {
     Route::prefix('phim')->group(function () {
         Route::get('/{slug}', [\App\Http\Controllers\Web\MovieController::class, 'index'])->name('movie');
     });
+
+    Route::prefix('dao-dien')->group(function () {
+        Route::get('/{id}', [\App\Http\Controllers\Web\DirectorsController::class, 'index'])->name('director');
+    });
+
+    Route::prefix('dien-vien')->group(function () {
+        Route::get('/{id}', [\App\Http\Controllers\Web\ActorsController::class, 'index'])->name('actor');
+    });
 });

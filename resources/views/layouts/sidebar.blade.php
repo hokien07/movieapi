@@ -45,7 +45,7 @@
                         <span>{{$phim->origin_name}} ({{$phim->year}})</span>
                         <span><b>Thể loại</b>:
                                @foreach($phim->categories as $cat)
-                                <a href="{{route('category', $cat->slug)}}" tite="{{$cat->name}}" rel="tag">{{$cat->name}}</a>{{$loop->last ? "" : ","}}
+                                <a href="{{route('category', $cat->slug)}}" title="{{$cat->name}}" rel="tag">{{$cat->name}}</a>{{$loop->last ? "" : ","}}
                             @endforeach
                         </span>
                     </div>

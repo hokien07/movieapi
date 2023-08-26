@@ -35,7 +35,15 @@ class MovieService extends ModelService
             ->orderBy('view', "DESC")->limit(10)->get();
     }
 
-//    public function getByCat(string $cat, int $limit = 5, string $sort = 'view') {
-//        return $this->model->where('type', $type)->orderBy($sort, "DESC")->limit($limit)->get();
-//    }
+    public function findBySlug($slug) {
+        return $this->model->where('slug', $slug)->first();
+    }
+
+    public function getSameMovieByCatIds (array $catIds, int $movieId) {
+        return $this->model->whereHas('categories', function ($query) use ($catIds) {
+            $query->whereIn('category_id', $catIds);
+        })
+            ->where('id', '<>', $movieId)
+            ->limit(30)->get();
+    }
 }
