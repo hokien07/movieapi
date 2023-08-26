@@ -17,6 +17,7 @@ class MovieController extends Controller
 
     public function index (Request $request, $slug) {
         $movie = $this->service->findBySlug($slug);
+        if(!$movie) abort(404);
         $categories = $movie->categories->pluck('id');
         $movies = $this->service->getSameMovieByCatIds($categories->toArray(), $movie->id);
         return view('movie', compact('movie', 'movies'));

@@ -30,8 +30,8 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Illuminate\Support\Facades\View::composer('layouts.nav', CatComposer::class);
-        \Illuminate\Support\Facades\View::composer('layouts.nav', CountryComposer::class);
+        \Illuminate\Support\Facades\View::composer(['layouts.nav', 'errors.404'], CatComposer::class);
+        \Illuminate\Support\Facades\View::composer(['layouts.nav', 'errors.404'], CountryComposer::class);
         \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'home'], TopPhimBoComposer::class);
         \Illuminate\Support\Facades\View::composer(['layouts.sidebar', 'home'], TopPhimLeComposer::class);
         \Illuminate\Support\Facades\View::composer(['layouts.sidebar'], PhimSapChieuComposer::class);

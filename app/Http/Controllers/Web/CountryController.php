@@ -17,12 +17,9 @@ class CountryController extends Controller
 
     public function index (Request $request, $slug) {
         $country = $this->service->findBySlug($slug);
-        $movies = [];
-        $name = "";
-        if($country) {
-            $name = "Thể loại " . $country->name;
-            $movies = $country->movies()->paginate(20);
-        }
+        if(!$country) abort(404);
+        $name = "Quốc gia " . $country->name;
+        $movies = $country->movies()->paginate(20);
         return view('archive', compact('movies', 'name'));
     }
 }

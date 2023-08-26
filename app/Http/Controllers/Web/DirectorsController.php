@@ -17,12 +17,9 @@ class DirectorsController extends Controller
 
     public function index (Request $request, $id) {
         $director = $this->service->findById($id);
-        $movies = [];
-        $name = "";
-        if($director) {
-            $name = "Thể loại " . $director->name;
-            $movies = $director->movies()->paginate(20);
-        }
+        if(!$director) abort(404);
+        $name = "Đạo diễn " . $director->name;
+        $movies = $director->movies()->paginate(20);
         return view('archive', compact('movies', 'name'));
     }
 }
