@@ -11,6 +11,9 @@ class Country extends Model
     protected $table = "countries";
     protected $fillable = ["server_id", "name", "slug"];
 
+    public function movies () {
+        return $this->belongsToMany(Movie::class, 'country_movie', 'country_id', 'movie_id');
+    }
 
     protected static function booted()
     {

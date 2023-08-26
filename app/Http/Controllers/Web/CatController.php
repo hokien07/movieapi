@@ -16,11 +16,12 @@ class CatController extends Controller
 
     public function index (Request $request, $slug) {
         $cat = $this->service->getBySlug($slug);
-        $movies = null;
+        $movies = [];
+        $name = "";
         if($cat) {
-            $movies = $cat->movie;
+            $name = "Thể loại " . $cat->name;
+            $movies = $cat->movies()->paginate(20);
         }
-        dd($movies);
-       return view('archive');
+       return view('archive', compact('movies', 'name'));
     }
 }
