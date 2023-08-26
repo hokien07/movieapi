@@ -11,6 +11,10 @@ class Actor extends Model
     protected $table= "actors";
     protected $fillable = ["name", "avatar", "age", "gender", "country"];
 
+    public function movies () {
+        return $this->belongsToMany(Movie::class, 'actor_movie', 'actor_id', 'movie_id');
+    }
+
 
     protected static function booted()
     {
