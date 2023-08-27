@@ -39,7 +39,6 @@
         {"@context":"https://schema.org","@type":"WebPage","name":"Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất","description":"Xem phim mới trực tuyến chất lượng cao miễn phí. Phim thuyết minh, vietsub, Phim bộ mới nhất, phim hành động hay, phim tâm lý tình cảm hài hước hấp dẫn nhất","image":"https://www.xemphim.sbs/favicon2.ico"}
     </script>
     <meta name="theme-color" content="#e7b53a">
-    <script type='text/javascript' src='{{asset('js/jquery.min.js')}}' id='jquery-js'></script>
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" data-type="lazy" data-src="{{asset('css/awesome.all.min.css')}}"/>
 </head>

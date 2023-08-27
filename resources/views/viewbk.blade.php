@@ -2239,12 +2239,25 @@
         }
     }
 </script>
-<script type="text/javascript">const perfmattersDelayTimer2 = setTimeout(pmLoadDelayedScripts2,10*1000);const perfmattersUserInteractions2=["keydown","mousemove","wheel","touchmove","touchstart","touchend"];perfmattersUserInteractions2.forEach(function(event){window.addEventListener(event,pmTriggerDelayedScripts2,{passive:!0})});function pmTriggerDelayedScripts2(){pmLoadDelayedScripts2();clearTimeout(perfmattersDelayTimer2);perfmattersUserInteractions2.forEach(function(event){window.removeEventListener(event, pmTriggerDelayedScripts2,{passive:!0});});}function pmLoadDelayedScripts2(){
-        const episode = '375047';
-        let playing = document.querySelector(`[data-id="${episode}"]`);
-        if (playing) {
-            playing.click();
-            return;
+<script type="text/javascript">
+        const perfmattersDelayTimer2 = setTimeout(pmLoadDelayedScripts2,10*1000);
+        const perfmattersUserInteractions2=["keydown","mousemove","wheel","touchmove","touchstart","touchend"];
+        perfmattersUserInteractions2.forEach(function(event){window.addEventListener(event,pmTriggerDelayedScripts2,{passive:!0})});
+
+        function pmTriggerDelayedScripts2(){
+            pmLoadDelayedScripts2();
+            clearTimeout(perfmattersDelayTimer2);
+            perfmattersUserInteractions2.forEach(function(event){
+                window.removeEventListener(event, pmTriggerDelayedScripts2,{passive:!0});
+            });
+        }
+
+        function pmLoadDelayedScripts2(){
+            const episode = '375047';
+            let playing = document.querySelector(`[data-id="${episode}"]`);
+            if (playing) {
+                playing.click();
+                return;
         }
 
         const servers = document.getElementsByClassName('streaming-server');

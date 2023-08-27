@@ -3,7 +3,7 @@
 <html lang="vi">
 
 @include('layouts.head')
-<body data-rsssl=1 class='tsdefaultlayout' itemscope='itemscope' itemtype='http://schema.org/WebSite'>
+<body class='tsdefaultlayout' itemscope='itemscope' itemtype='http://schema.org/WebSite'>
 <div class="mainholder">
     @include('layouts.header')
     <nav id="main-menu" class="mm">
@@ -82,7 +82,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="item video-nav">
                                 <div class="mobius">
                                     <div class="iconx">
@@ -249,5 +248,20 @@
         </footer>
     </div>
 </div>
+<script src='{{asset('js/jquery.min.js')}}'></script>
+<script src="{{asset('js/p2p-media-loader-core.min.js')}}"></script>
+<script src="{{asset('js/p2p-media-loader-hlsjs.min.js')}}"></script>
+<script async src="{{asset('js/jwplayer-8.9.3.js')}}"></script>
+<script async src="{{asset('js/hls.min.js')}}"></script>
+<script async src="{{asset('js/jwplayer.hlsjs.min.js')}}"></script>
+<script async src="{{asset('js/player.js')}}"></script>
+<script>
+    $(document).ready(function () {
+        episode.setId("{{$firstEpisode->id}}")
+        episode.setM3U8("{{$firstEpisode->link_m3u8}}");
+        episode.setEmbed("{{$firstEpisode->link_embed}}")
+        episode.setThumb("{{$movie->thumb_url}}")
+    })
+</script>
 </body>
 </html>

@@ -26,62 +26,9 @@
         </div>
     </footer>
 </div>
-</div>
 
-
-<script type="text/javascript" data-type="lazy" data-src="/themes/kiss/js/kpv_popunder7.js"
-        id="kpv_popunder-js"></script>
-<script type='text/javascript' data-type='lazy' data-src='/themes/kiss/js/app_2.js' id='qtip-js'></script>
-<script type='text/javascript' data-type='lazy' data-src='/themes/kiss/js/gtagv4.js?id=G-SSP0TPFQX2'></script>
-<script>window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-
-    gtag("js", new Date());
-    gtag("config", "G-SSP0TPFQX2");</script>
-<script type="text/javascript"
-        id="perfmatters-delayed-scripts-js">const perfmattersDelayTimer = setTimeout(pmLoadDelayedScripts, 10 * 1000);
-    const perfmattersUserInteractions = ["keydown", "mousemove", "wheel", "touchmove", "touchstart", "touchend"];
-    perfmattersUserInteractions.forEach(function (event) {
-        window.addEventListener(event, pmTriggerDelayedScripts, {passive: !0})
-    });
-
-    function pmTriggerDelayedScripts() {
-        pmLoadDelayedScripts();
-        clearTimeout(perfmattersDelayTimer);
-        perfmattersUserInteractions.forEach(function (event) {
-            window.removeEventListener(event, pmTriggerDelayedScripts, {passive: !0});
-        });
-    }
-
-    function pmLoadDelayedScripts() {
-        //document.querySelectorAll("script[data-pmdelayedscript]").forEach(function(elem){elem.setAttribute("src",elem.getAttribute("data-pmdelayedscript"));});
-        document.querySelectorAll("script[data-type=lazy]").forEach(function (elem) {
-            elem.setAttribute("src", elem.getAttribute("data-src"));
-        });
-        document.querySelectorAll("link[data-type='lazy']").forEach(function (elem) {
-            elem.setAttribute("href", elem.getAttribute("data-src"))
-        });
-        document.querySelectorAll("img[data-type=lazy]").forEach(function (elem) {
-            elem.setAttribute("src", elem.getAttribute("data-src"));
-        });
-    }
-</script>
-<script data-type="lazy"
-        data-src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v16.0&appId=16052107149&autoLogAppEvents=1"></script>
-<style>.bottom.tags a {
-        padding: 4px 8px;
-        margin-right: 5px;
-        margin-bottom: 5px;
-    }
-
-    #submit-search {
-        padding-bottom: 12px !important;
-        padding-left: 32px !important
-    }</style>
-
+<script src='{{asset('js/jquery.min.js')}}'></script>
+<script type='text/javascript' data-type='lazy' data-src='{{asset('js/main.js')}}'></script>
 <script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='owl-carousel-js'></script>
 <script>
     $(document).ready(function () {
@@ -89,7 +36,6 @@
             center: true,
             loop: true,
             nav: true,
-            //animateOut: 'fadeOut',
             navText: ["<span class='prev icon-angle-left'></span>",
                 "<span class='next icon-angle-right'></span>"
             ],
