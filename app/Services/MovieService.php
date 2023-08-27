@@ -6,28 +6,42 @@ use App\Models\Movie;
 
 class MovieService extends ModelService
 {
-    public function __construct(Movie $model)
+    public function __construct()
     {
-        parent::__construct($model);
+        $this->model = resolve(Movie::class);
     }
 
-    public function getPopular () {
-        return $this->model->query()->where('status', 'ongoing')->limit(5)->get();
+    public function getByType(string $type, int $limit = 10, string $sort = 'view') {
+        return $this->model->where('type', $type)->orderBy($sort, "DESC")->limit($limit)->get();
     }
 
-    public function getTrend () {
-        return $this->model->query()->orderBy('view', "desc")->limit(5)->get();
+    public function getPhimRap(int $limit = 5, string $sort = 'view') {
+        return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->limit($limit)->get();
     }
 
-    public function topRate () {
-        return $this->model->query()->where('status', 'completed')->orderBy('view', "desc")->limit(5)->get();
+    public function getRanDomForSlide() {
+        return $this->model->inRandomOrder()->limit(10)->get();
     }
 
-    public function findByServerId ($serverId) {
-        return $this->model->query()->where('server_id', $serverId)->first();
+    public function getTrending() {
+        return $this->model->orderBy('view', "DESC")->first();
     }
 
+    public function getSapChieu() {
+        return $this->model->where('status', "ongoing")
+            ->whereNotNull('trailer_url')
+            ->orderBy('view', "DESC")->limit(10)->get();
+    }
 
+    public function findBySlug($slug) {
+        return $this->model->where('slug', $slug)->first();
+    }
 
-
+    public function getSameMovieByCatIds (array $catIds, int $movieId) {
+        return $this->model->whereHas('categories', function ($query) use ($catIds) {
+            $query->whereIn('category_id', $catIds);
+        })
+            ->where('id', '<>', $movieId)
+            ->limit(30)->get();
+    }
 }
