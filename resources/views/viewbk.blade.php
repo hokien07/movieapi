@@ -15,8 +15,7 @@
     <meta name="msnbot" content="index,follow" />
     <meta http-equiv="content-language" content="vi" />
     <meta name="csrf-token" content="NdexwQ3VTQQhUC4wCfkAIvPxxnoJPs6yRwW7EJuG">
-    <meta property="fb:app_id" content="16052107149" />
-    <link rel="shortcut icon" href="https://www.xemphim.sbs/favicon2.ico" type="image/png" />
+    <link rel="shortcut icon" href="{{asset('favicon2.ico')}}" type="image/png" />
     <title>Xem phim Vào Cuối Đêm tập 1 Vietsub HD</title>
     <meta name="description" content="Được chuyển thể từ tiểu thuyết bán chạy nhất cùng tên của Peride Celal, bộ phim kể về Macide, con gái của một gia đình nghèo, phải lòng một doanh nhân...">
     <meta name="keywords" content="Vào Cuối Đêm, Gecenin Ucunda | Poison Ivy">

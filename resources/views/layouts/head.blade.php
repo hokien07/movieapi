@@ -12,8 +12,7 @@
     <meta name="msnbot" content="index,follow"/>
     <meta http-equiv="content-language" content="vi"/>
     <meta name="csrf-token" content="OgFDDYesMXJT5JL9gwYc2wsBbcuKWSji1U6JuUXy">
-    <meta property="fb:app_id" content="16052107149"/>
-    <link rel="shortcut icon" href="https://www.xemphim.sbs/favicon2.ico" type="image/png"/>
+    <link rel="shortcut icon" href="{{asset('favicon2.ico')}}" type="image/png"/>
     <title>Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất</title>
     <meta name="description"
           content="Xem phim mới trực tuyến chất lượng cao miễn phí. Phim thuyết minh, vietsub, Phim bộ mới nhất, phim hành động hay, phim tâm lý tình cảm hài hước hấp dẫn nhất">
@@ -26,18 +25,15 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{env('APP_URL')}}"/>
     <meta property="og:site_name" content="XEM PHIM"/>
-    <meta property="og:image" content="https://www.xemphim.sbs/favicon2.ico"/>
+    <meta property="og:image" content="{{asset('favicon2.ico')}}"/>
 
     <meta name="twitter:card" content="website"/>
     <meta name="twitter:title" content="Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất"/>
     <meta name="twitter:description"
           content="Xem phim mới trực tuyến chất lượng cao miễn phí. Phim thuyết minh, vietsub, Phim bộ mới nhất, phim hành động hay, phim tâm lý tình cảm hài hước hấp dẫn nhất"/>
-    <meta name="twitter:url" content="https://www.xemphim.sbs"/>
+    <meta name="twitter:url" content="{{route('home')}}"/>
     <meta name="twitter:site" content="XEM PHIM"/>
-    <meta name="twitter:image" content="https://www.xemphim.sbs/favicon2.ico"/>
-    <script type="application/ld+json">
-        {"@context":"https://schema.org","@type":"WebPage","name":"Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất","description":"Xem phim mới trực tuyến chất lượng cao miễn phí. Phim thuyết minh, vietsub, Phim bộ mới nhất, phim hành động hay, phim tâm lý tình cảm hài hước hấp dẫn nhất","image":"https://www.xemphim.sbs/favicon2.ico"}
-    </script>
+    <meta name="twitter:image" content="{{asset('favicon2.ico')}}"/>
     <meta name="theme-color" content="#e7b53a">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" data-type="lazy" data-src="{{asset('css/awesome.all.min.css')}}"/>

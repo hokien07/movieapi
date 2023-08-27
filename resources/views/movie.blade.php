@@ -114,18 +114,6 @@
                     <a href="{{route('movie', $movie->slug)}}" title="Phim {{$movie->origin_name}}" rel="tag">{{$movie->origin_name}}</a>
                 </div>
             </div>
-            <div class='socialts' hidden>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.xemphim.sbs/phim/phap-su-dai-tai&t=Pháp Sư Đại Tài"
-                   target="_blank" class="fb"> <i class="fab fa-facebook-f"></i> <span>Facebook</span> </a> <a
-                    href="https://www.twitter.com/intent/tweet?url=https://www.xemphim.sbs/phim/phap-su-dai-tai&text=Pháp Sư Đại Tài"
-                    target="_blank" class="twt"> <i class="fab fa-twitter"></i> <span>Twitter</span> </a> <a
-                    href="whatsapp://send?text=Pháp Sư Đại Tài https://www.xemphim.sbs/phim/phap-su-dai-tai"
-                    target="_blank"
-                    class="wa"> <i class="fab fa-whatsapp"></i> <span>WhatsApp</span> </a> <a
-                    href="https://pinterest.com/pin/create/button/?url=https://www.xemphim.sbs/phim/phap-su-dai-tai&media=/storage/images/phap-su-dai-tai/phap-su-dai-tai-thumb.jpg&description=Pháp Sư Đại Tài"
-                    target="_blank" class="pntrs"> <i class="fab fa-pinterest-p"></i> <span>Pinterest</span>
-                </a>
-            </div>
             <div class="bixbox synp">
                 <div class="releases">
                     <h2>Thông tin phim {{$movie->name}}</h2>

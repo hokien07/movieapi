@@ -166,7 +166,7 @@
                         <div class="releases"><h3><span>Bình luận</span></h3></div>
                         <div class="cmt commentx">
                             <div class="box-comment" id="tabs-facebook" style="background: linear-gradient(to right, #ffff, #ffff);">
-                                <div class="fb-comments" data-href="https://www.xemphim.sbs/phim/vao-cuoi-dem" data-width="100%"
+                                <div class="fb-comments" data-href="{{route('movie', $movie->slug)}}" data-width="100%"
                                      data-numposts="10" data-order-by="reverse_time" data-colorscheme="light">
                                 </div>
                             </div>

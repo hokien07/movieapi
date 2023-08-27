@@ -1,4 +1,4 @@
-
+17253
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -20,10 +20,7 @@
                 </div>
             </header>
             <div class="searchx">
-                <meta itemprop="url" content="https://www.xemphim.sbs"/>
-                <form method="GET" action="/" id="form" itemprop="potentialAction" itemscope
-                      itemtype="http://schema.org/SearchAction">
-                    <meta itemprop="target" content="https://www.xemphim.sbs/?search={search}" />
+                <form method="GET" action="/" id="form" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction">
                     <input id="s" name="search" itemprop="query-input" class="search-live" type="text"
                            placeholder="Tìm kiếm phim..." value="" />
                     <button type="button" id="submit-search" onclick="$(this).parent().submit()" aria-label="Tìm kiếm phim">
@@ -47,29 +44,15 @@
             <div class="footermenu">
                 <div class="menu-foot-container">
                     <ul id="menu-foot" class="menu">
-                        <li id="menu-item-17253"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17253"><a
-                                href="mailto:admin@xemphim.sbs" itemprop="url">DMCA</a></li>
-                        <li id="menu-item-17256"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17256"><a
-                                href="mailto:admin@xemphim.sbs" itemprop="url">Contact Us</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17253"><a
+                                href="mailto:admin@cayphim.com" itemprop="url">DMCA</a></li>
+                        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17256"><a
+                                href="mailto:admin@cayphim.com" itemprop="url">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footercopyright">
                 <div class="footer-az"><span class="ftaz">XEMPHIM</span><span class="size-s">Xem phim miễn phí</span>
-                    <ul class="ulclear az-list">
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                    </ul>
                     <div class="clear"></div>
                 </div>
                 <div class="copyright">
