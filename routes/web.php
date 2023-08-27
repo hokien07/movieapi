@@ -26,7 +26,7 @@ Route::middleware('web')->group(function() {
 
     Route::prefix('phim')->group(function () {
         Route::get('/{slug}', [\App\Http\Controllers\Web\MovieController::class, 'index'])->name('movie');
-        Route::get('/xem/{slug}', [\App\Http\Controllers\Web\MovieController::class, 'view'])->name('movie.view');
+        Route::get('/{slug}/tap-{episode}', [\App\Http\Controllers\Web\MovieController::class, 'view'])->name('movie.view');
     });
 
     Route::prefix('dao-dien')->group(function () {

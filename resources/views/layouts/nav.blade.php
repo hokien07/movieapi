@@ -3,7 +3,7 @@
         <span itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
                 <ul id="menu-menu" class="menu">
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-72">
-                        <a href="/" itemprop="url"><span itemprop="name">Trang chủ</span></a>
+                        <a href="{{route('home')}}" itemprop="url"><span itemprop="name">Trang chủ</span></a>
                     </li>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-73">
                         <a href="#" itemprop="url"><span itemprop="name">Thể loại</span></a>
@@ -24,7 +24,9 @@
                             </li>
                 </ul>
             </span>
-        <a href="https://www.xemphim.sbs" class="surprise"><i class="fa fa-star-o" aria-hidden="true"></i>Fanpage</a>
+        <a href="{{route('home')}}" class="surprise">
+            <i class="fa fa-star-o" aria-hidden="true"></i>Fanpage
+        </a>
         <div class="clear"></div>
     </div>
 </div>

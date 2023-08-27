@@ -4,7 +4,6 @@
 
 @include('layouts.head')
 <body data-rsssl=1 class='tsdefaultlayout' itemscope='itemscope' itemtype='http://schema.org/WebSite'>
-<div id='shadow'></div>
 <div class="mainholder">
     @include('layouts.header')
     <nav id="main-menu" class="mm">
@@ -29,7 +28,7 @@
                             </li>
                             ›
                             <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                                <span itemprop="name">Tập 1</span>
+                                <span itemprop="name">Tập {{$firstEpisode->name}}</span>
                                 <meta itemprop="position" content="3">
                             </li>
                         </ol>
@@ -74,14 +73,6 @@
                                         <i class="status Hard Sub">{{$movie->lang}}</i>
                                         Updated on <span class="updated">{{$movie->updated_at}}</span> · <span id="ts-ep-view">{{$movie->view}} lượt xem</span></span>
                                 </div>
-                                <div class="sosmed" hidden><a
-                                        href="https://www.facebook.com/sharer/sharer.php?u=https://www.xemphim.sbs/phim/vao-cuoi-dem&t=Vào Cuối Đêm"
-                                        aria-label="Share on Facebook"><span class="fab fa-facebook-f" aria-hidden="true"></span></a> <a
-                                        href="https://www.twitter.com/intent/tweet?url=https://www.xemphim.sbs/phim/vao-cuoi-dem&text=Vào Cuối Đêm"
-                                        aria-label="Share on Twitter"><span class="fab fa-twitter" aria-hidden="true"></span></a> <a
-                                        href="whatsapp://send?text=Vào Cuối Đêm https://www.xemphim.sbs/phim/vao-cuoi-dem"
-                                        aria-label="Share on Whatsapp"><span class="fab fa-whatsapp" aria-hidden="true"></span></a>
-                                </div>
                             </div>
 
                             <div class="video-content">
@@ -112,23 +103,6 @@
                             </div>
                         </div>
                     </div>
-                    <div id="change-server">
-                        <center>
-                            <ul class="server-list">
-                                <li class="backup-server"> <span class="server-title">Đổi Nguồn Phát</span>
-                                    <ul class="list-episode">
-                                        <li class="episode">
-                                            @foreach($movie->episodes as $episode)
-                                            <a data-id="{{$episode->id}}" data-link="{{$episode->link_m3u8}}"
-                                               data-type="m3u8" onclick="chooseStreamingServer(this)"
-                                               class="streaming-server btn-link-backup btn-episode black episode-link">{{$episode->server->name}}</a>
-                                            @endforeach
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </center>
-                    </div>
                     <div id="mobilepisode"></div>
                     <div class="single-info bixbox">
                         <div class="thumb">
@@ -154,7 +128,7 @@
                                     </span>
                                         <span>
                                         <b>Quốc gia:</b>
-                                        @foreach($movie->countries as $country)
+                                            @foreach($movie->countries as $country)
                                                 <a href="{{route('country', $country->slug)}}" title="Phim {{$country->name}}" rel="tag">{{$country->name}}</a>{{$loop->last ? "" : ","}}
                                             @endforeach
                                     </span>
@@ -204,32 +178,32 @@
                         <div class="series-gen">
                             <div class="listupd">
                                 <div id="series-390" class="tab-pane active">
-                                    @foreach($movies as $movie)
+                                    @foreach($movies as $phim)
                                         <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
                                             <div class="bsx">
-                                                <a href="{{route('movie', $movie->slug)}}" itemprop="url"
-                                                   title="{{$movie->name}} ({{$movie->origin_name}}) [{{$movie->year}}]"
-                                                   class="tip" rel="{{$movie->server_id}}">
+                                                <a href="{{route('movie', $phim->slug)}}" itemprop="url"
+                                                   title="{{$phim->name}} ({{$phim->origin_name}}) [{{$phim->year}}]"
+                                                   class="tip" rel="{{$phim->server_id}}">
                                                     <div class="limit">
-                                                        <div class="status Completed">{{getEpxStatus($movie->status)}}</div>
-                                                        <div class="typez Drama">{{getMovieType($movie->type)}}</div>
+                                                        <div class="status Completed">{{getEpxStatus($phim->status)}}</div>
+                                                        <div class="typez Drama">{{getMovieType($phim->type)}}</div>
                                                         <div class="ply"><i class="far fa-play-circle"></i></div>
-                                                        <div class="bt"><span class="epx">{{getMovieType($movie->type)}}</span> <span
-                                                                class="sb Soft Sub">{{$movie->lang}}</span></div>
+                                                        <div class="bt"><span class="epx">{{getMovieType($phim->type)}}</span> <span
+                                                                class="sb Soft Sub">{{$phim->lang}}</span></div>
                                                         <img data-type="lazy"
-                                                             src="{{$movie->thumb_url}}"
-                                                             data-src="{{$movie->thumb_url}}"
+                                                             src="{{$phim->thumb_url}}"
+                                                             data-src="{{$phim->thumb_url}}"
                                                              class="ts-post-image wp-post-image attachment-medium size-medium"
                                                              decoding="async" itemprop="image"
-                                                             title="{{$movie->name}} ({{$movie->origin_name}}) [{{$movie->year}}]"
-                                                             alt="{{$movie->name}} ({{$movie->origin_name}}) [{{$movie->year}}]"
+                                                             title="{{$phim->name}} ({{$phim->origin_name}}) [{{$phim->year}}]"
+                                                             alt="{{$phim->name}} ({{$phim->origin_name}}) [{{$phim->year}}]"
                                                              width="240" height="300"/>
                                                     </div>
                                                     <div class="ttt">
-                                                        <div class="tt">{{$movie->name}}
-                                                            <h2 itemprop="headline">{{$movie->origin_name}} {{getEpxStatus($movie->type)}}</h2>
+                                                        <div class="tt">{{$phim->name}}
+                                                            <h2 itemprop="headline">{{$phim->origin_name}} {{getEpxStatus($phim->type)}}</h2>
                                                         </div>
-                                                        <div class="timeago">{{$movie->origin_name}}</div>
+                                                        <div class="timeago">{{$phim->origin_name}}</div>
                                                     </div>
                                                 </a></div>
                                         </article>
@@ -240,148 +214,7 @@
                     </div>
                 </article>
             </div>
-
-            <div id="sidebar">
-                <div id="mainepisode">
-                    <div id="singlepisode">
-                        <div class="headlist">
-                            <div class="thumb">
-                                <a href="{{route('movie', $mMovie->slug)}}">
-                                    <img data-type="lazy" src="{{$mMovie->thumb_url}}" data-src="{{$mMovie->thumb_url}}"
-                                         decoding="async" class="ts-post-image wp-post-image attachment-medium size-medium"
-                                         title="{{$mMovie->name}}" alt="{{$mMovie->name}}" width="203" height="300">
-                                </a>
-                            </div>
-
-                            <div class="det">
-                                <h3><a href="{{route('movie', $mMovie->slug)}}">{{$mMovie->name}}</a></h3>
-                                <span><i>Đang xem tập 1</i> -  Vietsub #1</span>
-                            </div>
-
-                            <div class="search-ep">
-                                <input type="text" class="search-ep-text" id="search-ep-text-0" value="" placeholder="Tìm tập nhanh...">
-                                <button type="button" class="search-ep-eraser" id="search-ep-eraser-0" style="display: none; top: 4px">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                        @dd($mMovie->episodes)
-                        <div class="episodelist" id="episodelist-0">
-                            <ul>
-                                <li id="search-ep-no-result-0" style="display:none; text-align: center; padding: 10px 5px">Không thấy tập này</li>
-                                @foreach($mMovie->episodes()->groupBy('name') as $episode)
-                                <li data-server="0" data-name="{{$episode->name}}" data-id="{{$episode->id}}" >
-                                    <a href="{{route('movie.view', $mMovie->slug)}}" itemprop="url" title="{{$mMovie->name}} Tập {{$episode->name}}">
-                                        <div class="thumbnel">
-                                            <img data-type="lazy" src="{{$mMovie->thumb_url}}"
-                                                 data-src="{{$mMovie->thumb_url}}"
-                                                 decoding="async" class="ts-post-image wp-post-image attachment-post-thumbnail size-post-thumbnail"
-                                                 itemprop="image" title="{{$mMovie->name}} Tập {{$episode->name}}"
-                                                 alt="{{$mMovie->name}} Tập {{$episode->name}}" width="900" height="1332">
-                                            <div class="nowplay">
-                                                <i class="far fa-play-circle"></i>
-                                            </div>
-                                        </div>
-                                        <div class="playinfo">
-                                            <h4>{{$mMovie->name}} Tập {{$episode->name}}</h4>
-                                            <span class="epname">Tập {{$episode->name}}</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="releases">
-                        <h3>Mới cập nhật</h3>
-                    </div>
-                   <div class='ongoingseries'>
-                        <ul>
-                            @foreach($phimSapChieu as $phim)
-                                <li>
-                                    <a href="{{route('movie', $phim->slug)}}"
-                                       title="{{$phim->name}}">
-                                        <span class="l"><i class="fas fa-angle-right"></i>{{$phim->name}}</span>
-                                        <span class="r"> {{$phim->year}} </span>
-                                    </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="releases">
-                        <h3><span>Top phim lẻ</span></h3>
-                    </div>
-                    <div class='serieslist'>
-                        <ul>
-                            @foreach($phimLe as $phim)
-                                <li>
-                                    <div class="imgseries">
-                                        <a class="series" href="{{route('movie', $phim->slug)}}" rel="">
-                                            <img data-type="lazy" src="{{$phim->thumb_url}}" data-src="{{$phim->thumb_url}}"
-                                                 decoding="async"
-                                                 class="ts-post-image wp-post-image attachment-medium size-medium"
-                                                 itemprop="image"
-                                                 title="{{$phim->name}} ({{$phim->year}})"
-                                                 alt="{{$phim->name}} ({{$phim->year}})"
-                                                 width="200" height="300"/>
-                                        </a>
-                                    </div>
-                                    <div class="leftseries">
-                                        <h4><a class="series" href="{{route('movie', $phim->slug)}}"
-                                               rel="{{$phim->server_id}}">{{$phim->name}} ({{$phim->year}}) </a>
-                                        </h4>
-                                        <span>{{$phim->origin_name}} ({{$phim->year}})</span>
-                                        <span><b>Thể loại</b>:
-                               @foreach($phim->categories as $cat)
-                                                <a href="{{route('category', $cat->slug)}}" title="{{$cat->name}}" rel="tag">{{$cat->name}}</a>{{$loop->last ? "" : ","}}
-                                            @endforeach
-                        </span>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="releases">
-                        <h3><span>Top phim bộ</span></h3>
-                    </div>
-                    <div class='serieslist'>
-                        <ul>
-                            @foreach($phimBo as $phim)
-                                <li>
-                                    <div class="imgseries">
-                                        <a class="series" href="{{route('movie', $phim->slug)}}" rel="">
-                                            <img data-type="lazy" src="{{$phim->thumb_url}}" data-src="{{$phim->thumb_url}}"
-                                                 decoding="async"
-                                                 class="ts-post-image wp-post-image attachment-medium size-medium"
-                                                 itemprop="image"
-                                                 title="{{$phim->name}} ({{$phim->year}})"
-                                                 alt="{{$phim->name}} ({{$phim->year}})"
-                                                 width="200" height="300"/>
-                                        </a>
-                                    </div>
-                                    <div class="leftseries">
-                                        <h4><a class="series" href="{{route('movie', $phim->slug)}}"
-                                               rel="{{$phim->server_id}}">{{$phim->name}} ({{$phim->year}}) </a>
-                                        </h4>
-                                        <span>{{$phim->origin_name}} ({{$phim->year}})</span>
-                                        <span><b>Thể loại</b>:
-                               @foreach($phim->categories as $cat)
-                                                <a href="{{route('category', $cat->slug)}}" tite="{{$cat->name}}" rel="tag">{{$cat->name}}</a>{{$loop->last ? "" : ","}}
-                                            @endforeach
-                        </span>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.sidebar')
             <div class="clear"></div>
         </div>
     </div>
@@ -401,19 +234,9 @@
                 </div>
             </div>
             <div class="footercopyright">
-                <div class="footer-az"><span class="ftaz">XEMPHIM</span><span class="size-s">Xem phim miễn phí</span>
-                    <ul class="ulclear az-list">
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                        <li><a href="/">Text Link</a></li>
-                    </ul>
+                <div class="footer-az">
+                    <span class="ftaz">XEMPHIM</span>
+                    <span class="size-s">Xem phim miễn phí</span>
                     <div class="clear"></div>
                 </div>
                 <div class="copyright">

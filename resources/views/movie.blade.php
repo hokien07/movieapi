@@ -18,14 +18,14 @@
             <div class="bixbox animefull">
                 <div class="bigcover">
                     <div class="ime">
-                        <a href="{{route('movie.view', $movie->slug)}}" class="lnk" aria-label="Xem phim {{$movie->name}}"></a>
+                        <a href="{{route('movie.view',[$movie->slug, $episode->name])}}" class="lnk" aria-label="Xem phim {{$movie->name}}"></a>
                         <img
                             decoding="async" data-type="lazy"
                             src="{{$movie->poster}}"
                             data-src="{{$movie->poster}}"
                             alt="{{$movie->name}}"/>
                     </div>
-                    <a href="{{route('movie.view', $movie->slug)}}" class="gp" aria-label="Xem phim {{$movie->name}}"><i class="far fa-play-circle" aria-hidden="true"></i></a>
+                    <a href="{{route('movie.view', [$movie->slug, $episode->name])}}" class="gp" aria-label="Xem phim {{$movie->name}}"><i class="far fa-play-circle" aria-hidden="true"></i></a>
                 </div>
                 <div class="bigcontent">
                     <div class="thumbook">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <a style="display: block"
-                               href="{{route('movie.view', $movie->slug)}}" class="bookmark">
+                               href="{{route('movie.view', [$movie->slug, $episode->name])}}" class="bookmark">
                                 <i class="far fa-play-circle" aria-hidden="true"></i> Xem Phim</a>
                         </div>
                     </div>

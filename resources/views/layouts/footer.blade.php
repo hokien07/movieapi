@@ -15,18 +15,6 @@
         </div>
         <div class="footercopyright">
             <div class="footer-az"><span class="ftaz">XEMPHIM</span><span class="size-s">Xem phim miễn phí</span>
-                <ul class="ulclear az-list">
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                    <li><a href="/">Text Link</a></li>
-                </ul>
                 <div class="clear"></div>
             </div>
             <div class="copyright">

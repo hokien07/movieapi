@@ -1,4 +1,12 @@
 <div id="sidebar">
+    @if(request()->route()->getName() == "movie.view")
+    <div id="mainepisode">
+        <div id="singlepisode">
+            @include('layouts.headlist')
+            @include('layouts.episodelist')
+        </div>
+    </div>
+    @endif
     <div class="section">
         <div class="releases">
             <h3>Mới cập nhật</h3>

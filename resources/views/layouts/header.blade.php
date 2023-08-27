@@ -4,7 +4,7 @@
         <header class="mainheader" role="banner" itemscope>
             <div class="site-branding logox">
                 <h1 class="logos">
-                    <a href="/" itemprop="url" title="Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất">Xem Phim Mới</a>
+                    <a href="{{route('home')}}" itemprop="url" title="Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất">Xem Phim Mới</a>
                 </h1>
             </div>
         </header>
