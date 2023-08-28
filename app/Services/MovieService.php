@@ -11,16 +11,25 @@ class MovieService extends ModelService
         $this->model = resolve(Movie::class);
     }
 
-    public function getByType(string $type, int $limit = 10, string $sort = 'view') {
-        return $this->model->where('type', $type)->orderBy($sort, "DESC")->limit($limit)->get();
+    public function getByType(string $type, int $limit = 10, string $sort = 'view', $paginate = false) {
+        if(!$paginate) {
+            return $this->model->where('type', $type)->orderBy($sort, "DESC")->limit($limit)->get();
+        }
+        return $this->model->where('type', $type)->orderBy($sort, "DESC")->paginate($limit);
     }
 
-    public function getPhimRap(int $limit = 5, string $sort = 'view') {
-        return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->limit($limit)->get();
+    public function getPhimRap(int $limit = 5, string $sort = 'view', $paginate = false) {
+        if(!$paginate) {
+            return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->limit($limit)->get();
+        }
+        return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->paginate($limit);
     }
 
-    public function getRanDomForSlide() {
-        return $this->model->inRandomOrder()->limit(10)->get();
+    public function getRanDomForSlide( $paginate = false) {
+        if(!$paginate) {
+            return $this->model->inRandomOrder()->limit(10)->get();
+        }
+        return $this->model->inRandomOrder()->paginate(20);
     }
 
     public function getTrending() {

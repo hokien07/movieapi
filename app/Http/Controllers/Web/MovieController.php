@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use App\Services\MovieService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MovieController extends Controller
 {
@@ -49,6 +50,32 @@ class MovieController extends Controller
         $movies =  $this->service->filter($search);
         $title = $name;
         return view('archive', compact('movies', 'name', 'title'));
+    }
+
+    public function danhSach (Request $request, $type) {
+        switch ($type) {
+            case "phim-chieu-rap":
+                $name = "Danh sách phim chiếu rạp";
+                $movies = $this->service->getPhimRap(20, 'view', true);
+                break;
+            case "phim-bo":
+                $name = "Dsanh sách phim bộ";
+                $movies = $this->service->getByType('series', 20, 'view', true);
+                break;
+            case "phim-le":
+                $name = "Danh sách phim lẻ";
+                $movies = $this->service->getByType('single', 20, 'view', true);
+                break;
+            case "hoat-hinh":
+                $name = "Danh sách phim hoạt hình";
+                $movies = $this->service->getByType('hoathinh', 20, 'view', true);
+                break;
+            default:
+                $name = "Danh sách phim";
+                $movies = $this->service->getRanDomForSlide(true);
+                break;
+        }
+        return view('archive', compact('movies', 'name'));
     }
 
 }

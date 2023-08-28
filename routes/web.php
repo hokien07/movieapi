@@ -36,4 +36,8 @@ Route::middleware('web')->group(function() {
     Route::prefix('dien-vien')->group(function () {
         Route::get('/{id}', [\App\Http\Controllers\Web\ActorsController::class, 'index'])->name('actor');
     });
+    Route::prefix('danh-sach')->group(function () {
+        Route::get('/{type}', [\App\Http\Controllers\Web\MovieController::class, 'danhSach'])->name('danhsach');
+    });
+
 });

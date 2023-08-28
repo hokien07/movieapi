@@ -76,7 +76,7 @@
         </div>
         <div class="bixbox">
             <div class="releases latesthome">
-                <h3>Phim chiếu rạp mới</h3><a class="vl" href="/danh-sach/phim-chieu-rap">Xem thêm</a>
+                <h3>Phim chiếu rạp mới</h3><a class="vl" href="{{route('danhsach', 'phim-chieu-rap')}}">Xem thêm</a>
             </div>
             <div class="listupd normal">
                 <div class="excstf">
@@ -110,7 +110,7 @@
         </div>
         <div class="bixbox">
             <div class="releases latesthome">
-                <h3>Phim bộ mới</h3><a class="vl" href="/danh-sach/phim-bo">Xem thêm</a>
+                <h3>Phim bộ mới</h3><a class="vl" href="{{route('danhsach', 'phim-bo')}}">Xem thêm</a>
             </div>
             <div class="listupd normal">
                 <div class="excstf">
@@ -144,7 +144,7 @@
         </div>
         <div class="bixbox">
             <div class="releases latesthome">
-                <h3>Phim lẻ mới</h3><a class="vl" href="/danh-sach/phim-le">Xem thêm</a>
+                <h3>Phim lẻ mới</h3><a class="vl" href="{{route('danhsach', 'phim-le')}}">Xem thêm</a>
             </div>
             <div class="listupd normal">
                 <div class="excstf">
@@ -178,7 +178,7 @@
         </div>
         <div class="bixbox">
             <div class="releases latesthome">
-                <h3>Phim hoạt hình</h3><a class="vl" href="/the-loai/hoat-hinh">Xem thêm</a>
+                <h3>Phim hoạt hình</h3><a class="vl" href="{{route('danhsach', 'hoat-hinh')}}">Xem thêm</a>
             </div>
             <div class="listupd normal">
                 <div class="excstf">
