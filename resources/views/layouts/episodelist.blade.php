@@ -11,7 +11,7 @@
                              itemprop="image" title="{{$movie->name}} Tập {{$tap->name}}"
                              alt="{{$movie->name}} Tập {{$tap->name}}" width="900" height="1332">
                         <div class="nowplay">
-                            <i class="far fa-play-circle"></i>
+                            <i class="fa fa-play-circle"></i>
                         </div>
                     </div>
                     <div class="playinfo">

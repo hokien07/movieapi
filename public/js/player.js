@@ -32,7 +32,8 @@ const episode = {
         this.playerKey = key;
     }
 }
-$(document).ready(function () {
+
+function renderPlayer () {
     const wrapper = document.getElementById('pembed');
     wrapper.innerHTML = `<div id="jwplayer"></div>`;
     const player = jwplayer("jwplayer");
@@ -43,7 +44,7 @@ $(document).ready(function () {
         height: "100%",
         image: episode.thumb,
         file: episode.link_m3u8,
-        playbackRateControls: true,
+        playbackRateControls: false,
         playbackRates: [0.25, 0.75, 1, 1.25],
         sharing: {
             sites: [
@@ -57,7 +58,7 @@ $(document).ready(function () {
         },
         volume: 100,
         mute: false,
-        autostart: true,
+        autostart: false,
         logo: {
             file: "",
             link: "",
@@ -74,7 +75,7 @@ $(document).ready(function () {
     };
     const segments_in_queue = 50;
     const engine_config = {
-        debug: !1,
+        debug: false,
         segments: {
             forwardSegmentCount: 50,
         },
@@ -92,7 +93,7 @@ $(document).ready(function () {
             simultaneousHttpDownloads: 2,
             httpDownloadInitialTimeout: 0,
             httpDownloadInitialTimeoutPerSegment: 17e3,
-            httpUseRanges: !0,
+            httpUseRanges: true,
             maxBufferLength: 300
         },
     };
@@ -108,4 +109,8 @@ $(document).ready(function () {
     } else {
         player.setup(objSetup);
     }
+}
+
+$(document).ready(function () {
+    renderPlayer();
 })
