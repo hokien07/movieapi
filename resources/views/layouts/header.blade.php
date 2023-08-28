@@ -4,7 +4,7 @@
         <header class="mainheader" role="banner" itemscope>
             <div class="site-branding logox">
                 <h1 class="logos">
-                    <a href="{{route('home')}}" itemprop="url" title="Xem Phim Mới | Phim HD | Phim VietSub | Thuyết Minh Hay Nhất">Xem Phim Mới</a>
+                    <a href="{{route('home')}}" itemprop="url" title="{{isset($title) ?  $title : config()->get('seo.default_title')}}">{{env("APP_NAME")}}</a>
                 </h1>
             </div>
         </header>

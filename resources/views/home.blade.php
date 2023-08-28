@@ -67,7 +67,7 @@
                         </div>
                         <div class="imgxa">
                             <img class="imgxb" alt="{{$trending->name}}" decoding="async" data-type="lazy"
-                                 src="{{$trending->poster}}"
+                                 src="{{$trending->thumb_url}}"
                                  data-src="{{$trending->thumb_url}}"/>
 
                         </div>
