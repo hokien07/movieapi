@@ -108,4 +108,4 @@ $(document).ready(function () {
     } else {
         player.setup(objSetup);
     }
-}) ;
+})

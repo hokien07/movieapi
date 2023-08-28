@@ -22,7 +22,10 @@ class MovieController extends Controller
         $categories = $movie->categories->pluck('id');
         $movies = $this->service->getSameMovieByCatIds($categories->toArray(), $movie->id);
         $episode = $movie->episodes->first();
-        return view('movie', compact('movie', 'movies', 'episode'));
+        $title = "$movie->name | $movie->origin_name | " .$episode->server->name;
+        $keywords = "$movie->name | $movie->origin_name | " .$episode->server->name;
+        $description = "$movie->description";
+        return view('movie', compact('movie', 'movies', 'episode', 'title', 'description', 'keywords'));
     }
 
     public function view (Request $request, $slug) {
@@ -32,7 +35,19 @@ class MovieController extends Controller
         $movies = $this->service->getSameMovieByCatIds($categories->toArray(), $movie->id);
         $episodes = $movie->episodes;
         $firstEpisode = $episodes->first();
-        return view('view', compact('movie', 'movies', 'episodes', 'firstEpisode'));
+        $title = "$movie->name | $movie->origin_name | " .$firstEpisode->server->name;
+        $keywords = "$movie->name | $movie->origin_name | " .$firstEpisode->server->name;
+        $description = "$movie->description";
+        return view('view', compact('movie', 'movies', 'episodes', 'firstEpisode', 'title', 'description', 'keywords'));
+    }
+
+    public function search(Request $request) {
+        $search = $request->input('search');
+        if(empty($search)) return back();
+        $name = "Kết quả tìm kiếm " . $search;
+        $movies =  $this->service->filter($search);
+        $title = $name;
+        return view('archive', compact('movies', 'name', 'title'));
     }
 
 }

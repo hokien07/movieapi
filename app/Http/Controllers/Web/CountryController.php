@@ -20,6 +20,10 @@ class CountryController extends Controller
         if(!$country) abort(404);
         $name = "Quốc gia " . $country->name;
         $movies = $country->movies()->paginate(20);
-        return view('archive', compact('movies', 'name'));
+        $year = \date('Y');
+        $title = "Danh sách phim $country->name - tổng hợp phim $country->name";
+        $keywords = "Xem phim $country->name, Phim $country->name mới, Phim $country->name $year, phim hay";
+        $description = "Phim $country->name mới nhất tuyển chọn hay nhất. Top những bộ phim $country->name đáng để bạn cày năm $year";
+        return view('archive', compact('movies', 'name', 'title', 'description', 'keywords'));
     }
 }

@@ -218,50 +218,21 @@
         </div>
     </div>
     <div id="footer">
-        <footer id="colophon" class="site-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter"
-                role="contentinfo">
-            <div class="footermenu">
-                <div class="menu-foot-container">
-                    <ul id="menu-foot" class="menu">
-                        <li id="menu-item-17253"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17253"><a
-                                href="mailto:admin@xemphim.sbs" itemprop="url">DMCA</a></li>
-                        <li id="menu-item-17256"
-                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-17256"><a
-                                href="mailto:admin@xemphim.sbs" itemprop="url">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footercopyright">
-                <div class="footer-az">
-                    <span class="ftaz">XEMPHIM</span>
-                    <span class="size-s">Xem phim miễn phí</span>
-                    <div class="clear"></div>
-                </div>
-                <div class="copyright">
-                    <div class="txt">
-                        <p>This site <i>XEMPHIM</i> does not store any files on its server. All contents
-                            are provided by non-affiliated third parties.</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('layouts.footer_content')
     </div>
 </div>
 <script src='{{asset('js/jquery.min.js')}}'></script>
 <script src="{{asset('js/p2p-media-loader-core.min.js')}}"></script>
 <script src="{{asset('js/p2p-media-loader-hlsjs.min.js')}}"></script>
-<script async src="{{asset('js/jwplayer-8.9.3.js')}}"></script>
-<script async src="{{asset('js/hls.min.js')}}"></script>
-<script async src="{{asset('js/jwplayer.hlsjs.min.js')}}"></script>
-<script async src="{{asset('js/player.js')}}"></script>
+<script src="{{asset('js/jwplayer-8.9.3.js')}}"></script>
+<script src="{{asset('js/hls.min.js')}}"></script>
+<script src="{{asset('js/jwplayer.hlsjs.min.js')}}"></script>
+<script src="{{asset('js/player.js')}}"></script>
 <script>
-    $(document).ready(function () {
-        episode.setId("{{$firstEpisode->id}}")
-        episode.setM3U8("{{$firstEpisode->link_m3u8}}");
-        episode.setEmbed("{{$firstEpisode->link_embed}}")
-        episode.setThumb("{{$movie->thumb_url}}")
-    })
+    episode.setId("{{$firstEpisode->id}}")
+    episode.setM3U8("{{$firstEpisode->link_m3u8}}");
+    episode.setEmbed("{{$firstEpisode->link_embed}}")
+    episode.setThumb("{{$movie->thumb_url}}")
 </script>
 </body>
 </html>

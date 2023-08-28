@@ -44,4 +44,25 @@ class MovieService extends ModelService
             ->where('id', '<>', $movieId)
             ->limit(30)->get();
     }
+
+    public function filter ($search) {
+        return $this->model->where("name", "LIKE", "%$search%")
+            ->orWhere('origin_name', "LIKE", "%$search%")
+            ->orWhere('description', "LIKE", "%$search%")
+            ->whereHas('actors', function ($q) use ($search){
+                $q->where('name', 'LIKE', "%$search%");
+            })
+            ->whereHas('directors', function ($q) use ($search){
+                $q->where('name', 'LIKE', "%$search%");
+            })
+            ->whereHas('countries', function ($q) use ($search){
+                $q->where('name', 'LIKE', "%$search%");
+            })
+            ->whereHas('episodes', function ($q) use ($search){
+                $q->where('name', 'LIKE', "%$search%");
+            })
+            ->whereHas('categories', function ($q) use ($search){
+                $q->where('name', 'LIKE', "%$search%");
+            })->paginate(20);
+    }
 }

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::middleware('web')->group(function() {
     Route::get("/", [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
-    Route::get('/search', function () {});
+    Route::get('/search', [\App\Http\Controllers\Web\MovieController::class, 'search'])->name('search');
 
     Route::prefix('the-loai')->group(function () {
         Route::get('/{slug}', [\App\Http\Controllers\Web\CatController::class, 'index'])->name('category');

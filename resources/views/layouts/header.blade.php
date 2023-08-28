@@ -9,10 +9,8 @@
             </div>
         </header>
         <div class="searchx">
-            <meta itemprop="url" content="{{env('APP_URL')}}"/>
-            <form method="GET" action="/" id="form">
-                <input id="s" name="search" itemprop="query-input" class="search-live" type="text"
-                       placeholder="Tìm kiếm phim..." value=""/>
+            <form method="GET" action="{{route('search')}}" id="form">
+                <input id="s" name="search" itemprop="query-input" class="search-live" type="text" placeholder="Tìm kiếm phim..." value="{{request()->input('search')}}"/>
                 <button type="button" id="submit-search" onclick="$(this).parent().submit()"
                         aria-label="Tìm kiếm phim">
                     <i class="fa fa-search" aria-hidden="true"></i>

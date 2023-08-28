@@ -20,6 +20,10 @@ class ActorsController extends Controller
         if(!$director) abort(404);
         $name = "Diễn viên " . $director->name;
         $movies = $director->movies()->paginate(20);
-        return view('archive', compact('movies', 'name'));
+        $year = date('Y');
+        $title = "Phim của diễn viên $director->name - tổng hợp phim $director->name hay nhất";
+        $description = "Phim của diễn viên $director->name - tổng hợp phim $director->name hay nhất $year";
+        $keywords = "xem phim $director->name, phim $director->name, tuyen tap phim $director->name phim mới nhất của $director->name năm $year";
+        return view('archive', compact('movies', 'name', 'title', 'description', 'keywords'));
     }
 }
