@@ -28,13 +28,14 @@ class MovieController extends Controller
         return view('movie', compact('movie', 'movies', 'episode', 'title', 'description', 'keywords'));
     }
 
-    public function view (Request $request, $slug) {
+    public function view (Request $request, $slug, $episode) {
         $movie = $this->service->findBySlug($slug);
         if(!$movie) abort(404);
         $categories = $movie->categories->pluck('id');
         $movies = $this->service->getSameMovieByCatIds($categories->toArray(), $movie->id);
         $episodes = $movie->episodes;
-        $firstEpisode = $episodes->first();
+        $firstEpisode = $episodes->where('name', $episode)->first();
+        if(!$firstEpisode) $firstEpisode = $episodes->first();
         $title = "$movie->name | $movie->origin_name | " .$firstEpisode->server->name;
         $keywords = "$movie->name | $movie->origin_name | " .$firstEpisode->server->name;
         $description = "$movie->description";

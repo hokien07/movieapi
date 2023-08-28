@@ -2,8 +2,8 @@
     <ul>
         <li id="search-ep-no-result--{{$movie->id}}" style="display:none; text-align: center; padding: 10px 5px">Không thấy tập này</li>
         @foreach($episodes as $tap)
-            <li data-server="0" data-name="{{$tap->name}}" data-id="{{$tap->id}}" class="{{$tap->id == $firstEpisode->id ? 'selected' : ''}}" {{$tap->id == $firstEpisode->id ?? 'selected'}}>
-                <a href="{{route('movie.view', [$tap->slug, $tap->name] )}}" itemprop="url" title="{{$movie->name}} Tập {{$tap->name}}">
+            <li data-name="{{$tap->name}}" data-id="{{$tap->id}}" class="{{$tap->id == $firstEpisode->id ? 'selected' : ''}}" {{$tap->id == $firstEpisode->id ?? 'selected'}}>
+                <a href="{{route('movie.view', [$movie->slug, $tap->name] )}}" itemprop="url" title="{{$movie->name}} Tập {{$tap->name}}">
                     <div class="thumbnel">
                         <img data-type="lazy" src="{{$movie->thumb_url}}"
                              data-src="{{$movie->thumb_url}}"
