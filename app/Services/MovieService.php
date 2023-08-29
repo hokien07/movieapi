@@ -74,4 +74,19 @@ class MovieService extends ModelService
                 $q->where('name', 'LIKE', "%$search%");
             })->paginate(20);
     }
+
+
+    public function getPhimThuyetMinh ($limit = 20, string $sort = 'view', $paginate = false) {
+        if(!$paginate) {
+            return $this->model->where('lang', 'LIKE', "%Thuyết Minh%")->orderBy('view', "DESC")->limit($limit)->get();
+        }
+        return $this->model->where('lang', 'LIKE', "%Thuyết Minh%")->orderBy('view', "DESC")->paginate($limit);
+    }
+
+    public function getPhimLongTieng ($limit = 20, string $sort = 'view', $paginate = false) {
+        if(!$paginate) {
+            return $this->model->where('lang', 'LIKE', "%Lồng Tiếng%")->orderBy('view', "DESC")->limit($limit)->get();
+        }
+        return $this->model->where('lang', 'LIKE', "%Lồng Tiếng%")->orderBy('view', "DESC")->paginate($limit);
+    }
 }
