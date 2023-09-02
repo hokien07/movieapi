@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(new CronJob)->everyThirtyMinutes();
         $schedule->job(new CronDetailJob)->everyMinute();
+        $schedule->command('cron:download')->everyMinute();
     }
 
     /**
