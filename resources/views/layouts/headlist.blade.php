@@ -1,7 +1,7 @@
 <div class="headlist">
     <div class="thumb">
         <a href="{{route('movie', $movie->slug)}}">
-            <img data-type="lazy" src="{{$movie->thumb_url}}" data-src="{{$movie->thumb_url}}"
+            <img data-type="lazy" src="{{renderMovieImage($movie, 'thumb')}}" data-src="{{renderMovieImage($movie, 'thumb')}}"
                  decoding="async" class="ts-post-image wp-post-image attachment-medium size-medium"
                  title="{{$movie->name}}" alt="{{$movie->name}}" width="203" height="300">
         </a>

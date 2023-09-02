@@ -24,7 +24,6 @@ class CronJob implements ShouldQueue
      */
     public function __construct()
     {
-        dd('okie');
         $this->baseUrl = config('cron.list');
     }
 
