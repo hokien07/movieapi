@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Movie;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class DownloadImageCommand extends Command
@@ -38,6 +40,22 @@ class DownloadImageCommand extends Command
      */
     public function handle()
     {
-        Storage::cloud()->put('bao-la-vung-troi-poster.jpg', file_get_contents('https://img.ophim8.cc/uploads/movies/bao-la-vung-troi-poster.jpg'));
+        $movie = Movie::query()->where('dimage', 0)->first();
+        if($movie) {
+            $thumbName = $this->getFileName($movie->thumb_url);
+            $posterName = $this->getFileName($movie->poster);
+            Storage::disk('public')->put("$movie->server_id/$thumbName", file_get_contents($movie->thumb_url));
+            Storage::disk('public')->put("$movie->server_id/$posterName", file_get_contents($movie->poster));
+            $movie->fill([
+                'thumb_url' => $thumbName,
+                'poster' => $posterName,
+                'dimage' => 1
+            ])->save();
+        }
+    }
+
+    private function getFileName(string $link) {
+        $arrLink = explode("/", $link);
+        return end($arrLink);
     }
 }

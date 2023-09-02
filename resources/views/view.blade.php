@@ -38,11 +38,11 @@
                         <div class="mvelement">
                             <div class="item meta">
                                 <div class="tb" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-                                    <img src="{{ $movie->thumb_url}}" data-src="{{ $movie->thumb_url}}"
+                                    <img src="{{renderMovieImage($movie, 'thumb')}}" data-src="{{renderMovieImage($movie, 'thumb')}}"
                                          decoding="async" class="ts-post-image wp-post-image attachment-medium size-medium" width="169"
                                          height="300" />
                                     <meta itemprop="url"
-                                          content="{{ $movie->thumb_url}}">
+                                          content="{{ renderMovieImage($movie, 'thumb')}}">
                                     <meta itemprop="width" content="190">
                                     <meta itemprop="height" content="260">
                                 </div>
@@ -105,8 +105,8 @@
                     <div id="mobilepisode"></div>
                     <div class="single-info bixbox">
                         <div class="thumb">
-                            <img data-type="lazy" src="{{$movie->thumb_url}}"
-                                 data-src="{{$movie->thumb_url}}"
+                            <img data-type="lazy" src="{{renderMovieImage($movie, 'thumb')}}"
+                                 data-src="{{renderMovieImage($movie, 'thumb')}}"
                                  decoding="async" class="ts-post-image wp-post-image attachment-medium size-medium" itemprop="image"
                                  title="{{$movie->name}}" alt="{{$movie->name}}" width="169" height="300" />
                         </div>
@@ -190,8 +190,8 @@
                                                         <div class="bt"><span class="epx">{{getMovieType($phim->type)}}</span> <span
                                                                 class="sb Soft Sub">{{$phim->lang}}</span></div>
                                                         <img data-type="lazy"
-                                                             src="{{$phim->thumb_url}}"
-                                                             data-src="{{$phim->thumb_url}}"
+                                                             src="{{renderMovieImage($phim, 'thumb')}}"
+                                                             data-src="{{renderMovieImage($phim, 'thumb')}}"
                                                              class="ts-post-image wp-post-image attachment-medium size-medium"
                                                              decoding="async" itemprop="image"
                                                              title="{{$phim->name}} ({{$phim->origin_name}}) [{{$phim->year}}]"

@@ -7,8 +7,8 @@
                 <div class="slide-item full">
                     <div class="slide-bg">
                         <img data-type="lazy"
-                                               src="{{$phim->thumb_url}}"
-                                               data-src="{{$phim->thumb_url}}"
+                                               src="{{renderMovieImage($phim, 'thumb')}}"
+                                               data-src="{{renderMovieImage($phim, 'thumb')}}"
                                                decoding="async"
                                                class="ts-post-image wp-post-image attachment-medium size-medium"
                                                itemprop="image"
@@ -20,8 +20,8 @@
                                 href="{{route('movie', $phim->slug)}}">
                                 <img
                                     data-type="lazy"
-                                    src="{{$phim->thumb_url}}"
-                                    data-src="{{$phim->thumb_url}}"
+                                    src="{{renderMovieImage($phim, 'thumb')}}"
+                                    data-src="{{renderMovieImage($phim, 'thumb')}}"
                                     decoding="async"
                                     class="ts-post-image wp-post-image attachment-medium size-medium"
                                     itemprop="image" title="{{$phim->name}}" alt="{{$phim->name}}" width="212"
@@ -67,8 +67,8 @@
                         </div>
                         <div class="imgxa">
                             <img class="imgxb" alt="{{$trending->name}}" decoding="async" data-type="lazy"
-                                 src="{{$trending->thumb_url}}"
-                                 data-src="{{$trending->thumb_url}}"/>
+                                 src="{{renderMovieImage($trending, 'thumb')}}"
+                                 data-src="{{renderMovieImage($trending, 'thumb')}}"/>
 
                         </div>
                     </a></div>
@@ -89,8 +89,8 @@
                                     <div class="ply"><i class="far fa-play-circle"></i></div>
                                     <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                     <img data-type="lazy"
-                                         src="{{$phim->thumb_url}}"
-                                         data-src="{{$phim->thumb_url}}"
+                                         src="{{renderMovieImage($phim, 'thumb')}}"
+                                         data-src="{{renderMovieImage($phim, 'thumb')}}"
                                          class="ts-post-image wp-post-image attachment-medium size-medium"
                                          itemprop="image"
                                          decoding="async" title="{{$phim->name}}"
@@ -123,8 +123,8 @@
                                         <div class="ply"><i class="far fa-play-circle"></i></div>
                                         <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                         <img data-type="lazy"
-                                             src="{{$phim->thumb_url}}"
-                                             data-src="{{$phim->thumb_url}}"
+                                             src="{{renderMovieImage($phim, 'thumb')}}"
+                                             data-src="{{renderMovieImage($phim, 'thumb')}}"
                                              class="ts-post-image wp-post-image attachment-medium size-medium"
                                              itemprop="image"
                                              decoding="async" title="{{$phim->name}}"
@@ -157,8 +157,8 @@
                                         <div class="ply"><i class="far fa-play-circle"></i></div>
                                         <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                         <img data-type="lazy"
-                                             src="{{$phim->thumb_url}}"
-                                             data-src="{{$phim->thumb_url}}"
+                                             src="{{renderMovieImage($phim, 'thumb')}}"
+                                             data-src="{{renderMovieImage($phim, 'thumb')}}"
                                              class="ts-post-image wp-post-image attachment-medium size-medium"
                                              itemprop="image"
                                              decoding="async" title="{{$phim->name}}"
@@ -191,8 +191,8 @@
                                         <div class="ply"><i class="far fa-play-circle"></i></div>
                                         <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                         <img data-type="lazy"
-                                             src="{{$phim->thumb_url}}"
-                                             data-src="{{$phim->thumb_url}}"
+                                             src="{{renderMovieImage($phim, 'thumb')}}"
+                                             data-src="{{renderMovieImage($phim, 'thumb')}}"
                                              class="ts-post-image wp-post-image attachment-medium size-medium"
                                              itemprop="image"
                                              decoding="async" title="{{$phim->name}}"

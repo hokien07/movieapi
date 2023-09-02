@@ -37,7 +37,7 @@
                 <li>
                     <div class="imgseries">
                         <a class="series" href="{{route('movie', $phim->slug)}}" rel="">
-                            <img data-type="lazy" src="{{$phim->thumb_url}}" data-src="{{$phim->thumb_url}}"
+                            <img data-type="lazy" src="{{renderMovieImage($phim, 'thumb')}}" data-src="{{renderMovieImage($phim, 'thumb')}}"
                                                            decoding="async"
                                                            class="ts-post-image wp-post-image attachment-medium size-medium"
                                                            itemprop="image"
@@ -72,7 +72,7 @@
                     <li>
                         <div class="imgseries">
                             <a class="series" href="{{route('movie', $phim->slug)}}" rel="">
-                                <img data-type="lazy" src="{{$phim->thumb_url}}" data-src="{{$phim->thumb_url}}"
+                                <img data-type="lazy" src="{{renderMovieImage($phim, 'thumb')}}" data-src="{{renderMovieImage($phim, 'thumb')}}"
                                      decoding="async"
                                      class="ts-post-image wp-post-image attachment-medium size-medium"
                                      itemprop="image"

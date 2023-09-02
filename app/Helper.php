@@ -25,3 +25,20 @@ if(!function_exists("getEpxStatus")) {
         }
     }
 }
+
+if(!function_exists("renderMovieImage")) {
+    function renderMovieImage (\App\Models\Movie $movie, $type) {
+        if($type == 'thumb') {
+            if($movie->dimage == 0 ) {
+                return $movie->thumb_url;
+            }
+            return asset('storage/' . $movie->server_id . "/" . $movie->thumb_url);
+        }else {
+            if($movie->dimage == 0 ) {
+                return $movie->poster;
+            }
+            return asset('storage/' . $movie->server_id . "/" . $movie->poster);
+        }
+    }
+}
+

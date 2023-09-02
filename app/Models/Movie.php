@@ -33,7 +33,8 @@ class Movie extends Model
         "show_time",
         "year",
         "view",
-        "active"
+        "active",
+        "dimage"
     ];
 
     public function actors () {
