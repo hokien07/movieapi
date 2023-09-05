@@ -1082,8 +1082,8 @@
                                     <div class="ply"><i class="far fa-play-circle"></i></div>
                                     <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                     <img data-type="lazy"
-                                         src="{{$phim->thumb_url}}"
-                                         data-src="{{$phim->thumb_url}}"
+                                         src="{{renderMovieImage($movie, 'thumb')}}"
+                                         data-src="{{renderMovieImage($movie, 'thumb')}}"
                                          class="ts-post-image wp-post-image attachment-medium size-medium"
                                          decoding="async" itemprop="image"
                                          title="{{$phim->name}} ({{$phim->origin_name}}) [{{$phim->year}}]"

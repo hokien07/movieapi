@@ -5,8 +5,8 @@
             <li data-name="{{$tap->name}}" data-id="{{$tap->id}}" class="{{$tap->id == $firstEpisode->id ? 'selected' : ''}}" {{$tap->id == $firstEpisode->id ?? 'selected'}}>
                 <a href="{{route('movie.view', [$movie->slug, $tap->name] )}}" itemprop="url" title="{{$movie->name}} Tập {{$tap->name}}">
                     <div class="thumbnel">
-                        <img data-type="lazy" src="{{$movie->thumb_url}}"
-                             data-src="{{$movie->thumb_url}}"
+                        <img data-type="lazy" src="{{renderMovieImage($movie, 'thumb')}}"
+                             data-src="{{renderMovieImage($movie, 'thumb')}}"
                              decoding="async" class="ts-post-image wp-post-image attachment-post-thumbnail size-post-thumbnail"
                              itemprop="image" title="{{$movie->name}} Tập {{$tap->name}}"
                              alt="{{$movie->name}} Tập {{$tap->name}}" width="900" height="1332">
