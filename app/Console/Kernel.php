@@ -18,9 +18,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->job(new CronJob)->everyThirtyMinutes();
-        $schedule->job(new CronDetailJob)->everyMinute();
+        $schedule->job(new CronDetailJob)->everyFiveMinutes();
         $schedule->command('cron:download')->everyFiveMinutes();
-        $schedule->command('cron:delete')->dailyAt('01:00');
+        $schedule->command('cron:delete')->everyTwoHours();
     }
 
     /**
