@@ -40,8 +40,8 @@ class DownloadImageCommand extends Command
      */
     public function handle()
     {
-        $movie = Movie::query()->where('dimage', 0)->first();
-        if($movie) {
+        $movies = Movie::query()->where('dimage', 0)->limit(5);
+        foreach ($movies as $movie) {
             $thumbName = $this->getFileName($movie->thumb_url);
             $posterName = $this->getFileName($movie->poster);
             Storage::disk('public')->put("$movie->server_id/$thumbName", file_get_contents($movie->thumb_url));

@@ -86,7 +86,7 @@
                             <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                 <div class="limit">
                                     <div class="typez Movie">{{getMovieType($phim->type)}}</div>
-                                    <div class="ply"><i class="far fa-play-circle"></i></div>
+                                    <div class="ply"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                     <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                     <img data-type="lazy"
                                          src="{{renderMovieImage($phim, 'thumb')}}"
@@ -120,7 +120,7 @@
                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                     <div class="limit">
                                         <div class="typez Movie">{{getMovieType($phim->type)}}</div>
-                                        <div class="ply"><i class="far fa-play-circle"></i></div>
+                                        <div class="ply"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                         <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                         <img data-type="lazy"
                                              src="{{renderMovieImage($phim, 'thumb')}}"
@@ -154,7 +154,7 @@
                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                     <div class="limit">
                                         <div class="typez Movie">{{getMovieType($phim->type)}}</div>
-                                        <div class="ply"><i class="far fa-play-circle"></i></div>
+                                        <div class="ply"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                         <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                         <img data-type="lazy"
                                              src="{{renderMovieImage($phim, 'thumb')}}"
@@ -188,7 +188,7 @@
                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                     <div class="limit">
                                         <div class="typez Movie">{{getMovieType($phim->type)}}</div>
-                                        <div class="ply"><i class="far fa-play-circle"></i></div>
+                                        <div class="ply"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
                                         <div class="bt"><span class="epx">{{getEpxStatus($phim->status)}}</span> <span class="sb Soft Sub">{{$phim->lang}}</span></div>
                                         <img data-type="lazy"
                                              src="{{renderMovieImage($phim, 'thumb')}}"
