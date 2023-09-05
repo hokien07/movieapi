@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(new CronJob)->everyThirtyMinutes();
         $schedule->job(new CronDetailJob)->everyMinute();
-        $schedule->command('cron:download')->everyMinute();
+        $schedule->command('cron:download')->everyFiveMinutes();
         $schedule->command('cron:delete')->dailyAt('01:00');
     }
 

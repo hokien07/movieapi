@@ -40,17 +40,22 @@ class DownloadImageCommand extends Command
      */
     public function handle()
     {
-        $movies = Movie::query()->where('dimage', 0)->limit(5)->get();
+        $movies = Movie::query()->where('dimage', 0)->limit(100)->get();
         foreach ($movies as $movie) {
             $thumbName = $this->getFileName($movie->thumb_url);
             $posterName = $this->getFileName($movie->poster);
-            Storage::disk('public')->put("$movie->server_id/$thumbName", file_get_contents($movie->thumb_url));
-            Storage::disk('public')->put("$movie->server_id/$posterName", file_get_contents($movie->poster));
-            $movie->fill([
-                'thumb_url' => $thumbName,
-                'poster' => $posterName,
-                'dimage' => 1
-            ])->save();
+            try {
+                Storage::disk('public')->put("$movie->server_id/$thumbName", file_get_contents($movie->thumb_url));
+                Storage::disk('public')->put("$movie->server_id/$posterName", file_get_contents($movie->poster));
+                $movie->fill([
+                    'thumb_url' => $thumbName,
+                    'poster' => $posterName,
+                    'dimage' => 1
+                ])->save();
+            }catch (\Exception $e) {
+                $movie->fill(['dimage' => 2])->save();
+            }
+
         }
     }
 

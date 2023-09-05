@@ -41,35 +41,38 @@ class CronDetailJob implements ShouldQueue
      */
     public function handle()
     {
-        $detail = CronDetail::query()->where('status', 0)->first();
-        if(!$detail) return;
-        $movie = json_decode($detail->payload);
-        $client = new Client();
-        $content = $client->get($this->baseUrl . $movie->slug);
-        $content = json_decode($content->getBody()->getContents());
-        DB::beginTransaction();
-        try {
-            $movie = $this->storeMovie($content->movie);
-            $actorIds = $this->storeActor($content->movie->actor);
-            $movie->actors()->sync($actorIds);
+        $details = CronDetail::query()->where('status', 0)->limit(10)->first();
+        foreach ($details as $detail) {
+            DB::beginTransaction();
+            try {
+                $movie = json_decode($detail->payload);
+                $client = new Client();
+                $content = $client->get($this->baseUrl . $movie->slug);
+                $content = json_decode($content->getBody()->getContents());
+                $movie = $this->storeMovie($content->movie);
+                $actorIds = $this->storeActor($content->movie->actor);
+                $movie->actors()->sync($actorIds);
 
-            $directors = $this->storeDirector($content->movie->director);
-            $movie->directors()->sync($directors);
+                $directors = $this->storeDirector($content->movie->director);
+                $movie->directors()->sync($directors);
 
-            $countries = $this->storeCountry($content->movie->country);
-            $movie->countries()->sync($countries);
+                $countries = $this->storeCountry($content->movie->country);
+                $movie->countries()->sync($countries);
 
-            $categories = $this->storeCategory($content->movie->category);
-            $movie->categories()->sync($categories);
+                $categories = $this->storeCategory($content->movie->category);
+                $movie->categories()->sync($categories);
 
-            $episodes = $this->storeEpisodes($content->episodes);
-            $movie->episodes()->sync($episodes);
-            DB::commit();
-        }catch (\Exception $e) {
-            DB::rollBack();
-            dd($e);
+                $episodes = $this->storeEpisodes($content->episodes);
+                $movie->episodes()->sync($episodes);
+                $detail->fill(['status' => 1])->save();
+                DB::commit();
+            }catch (\Exception $e) {
+                $detail->fill(['status' => 2])->save();
+                DB::commit();
+            }
         }
-        $detail->fill(['status' => 1])->save();
+
+
     }
 
     private function storeEpisodes (array $episodes) : array
