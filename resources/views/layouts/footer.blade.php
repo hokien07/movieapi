@@ -3,8 +3,8 @@
 </div>
 
 <script src='{{asset('js/jquery.min.js')}}'></script>
-<script type='text/javascript' data-type='lazy' data-src='{{asset('js/main.js')}}'></script>
-<script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}' id='owl-carousel-js'></script>
+<script type='text/javascript' src='{{asset('js/main.js')}}'></script>
+<script type='text/javascript' src='{{asset('js/owl.carousel.min.js')}}'></script>
 <script>
     $(document).ready(function () {
         $('.loop').owlCarousel({

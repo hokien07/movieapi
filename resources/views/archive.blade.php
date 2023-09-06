@@ -1100,7 +1100,7 @@
                     </article>
                     @endforeach
                 </div>
-                {{$movies->links()}}
+                {{$movies->withQueryString()->links()}}
                 <div class="clear"></div>
             </div>
         </div>

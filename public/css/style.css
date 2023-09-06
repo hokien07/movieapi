@@ -666,7 +666,7 @@ body {
 }
 
 .slide-shadow {
-    background-image: url(/themes/kiss/images/pattern.png) !important;
+    background-image: url(/public/img/pattern.png) !important;
     background-color: rgba(0, 0, 0, .7) !important;
     box-shadow: inset 0 0 5px rgba(0, 0, 0, .7) !important
 }
@@ -702,7 +702,7 @@ body {
 }
 
 .slidtop .trending .tdb .crown {
-    background-image: url(/themes/kiss/images/crown.png);
+    background-image: url(/public/img/crown.png);
     background-size: 100%;
     position: absolute;
     right: 5px;
@@ -740,7 +740,7 @@ body {
 
 .slidtop .trending .tdb .textbg.blxc {
     color: #eee;
-    background: url(/themes/kiss/images/black.png)
+    background: url(/public/img/black.png)
 }
 
 .slidtop .trending .tdb .textbg .bghover {
@@ -4562,7 +4562,7 @@ select.mirror {
 }
 
 .serieslist.pop ul li.topone .limit .shadow {
-    background-image: url(/themes/kiss/images/pattern.png) !important;
+    background-image: url(/public/img/pattern.png) !important;
     background-color: rgba(40, 119, 182, .28) !important;
     z-index: 1;
     position: absolute;
@@ -4579,7 +4579,7 @@ select.mirror {
     padding: 10px 15px;
     padding-top: 30px;
     padding-left: 55px;
-    background: url(/themes/kiss/images/item-shadow.png) top center repeat
+    background: url(/public/img/item-shadow.png) top center repeat
 }
 
 .serieslist.pop ul li.topone .limit .bw .ctr {

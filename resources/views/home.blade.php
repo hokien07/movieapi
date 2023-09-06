@@ -7,34 +7,28 @@
                 <div class="slide-item full">
                     <div class="slide-bg">
                         <img data-type="lazy"
-                                               src="{{renderMovieImage($phim, 'thumb')}}"
-                                               data-src="{{renderMovieImage($phim, 'thumb')}}"
-                                               decoding="async"
-                                               class="ts-post-image wp-post-image attachment-medium size-medium"
-                                               itemprop="image"
-                                               title="{{$phim->name}}" alt="{{$phim->name}}" width="212"
-                                               height="300"/></div>
+                               src="{{renderMovieImage($phim, 'thumb')}}"
+                               data-src="{{renderMovieImage($phim, 'thumb')}}"
+                               decoding="async"
+                               class="ts-post-image wp-post-image attachment-medium size-medium"
+                               itemprop="image"
+                               title="{{$phim->name}}" alt="{{$phim->name}}" width="212"
+                               height="300"/>
+                    </div>
                     <div class="slide-shadow"></div>
                     <div class="slide-content">
-                        <div class="poster" style="position:relative"><a
-                                href="{{route('movie', $phim->slug)}}">
-                                <img
-                                    data-type="lazy"
+                        <div class="poster" style="position:relative">
+                            <a href="{{route('movie', $phim->slug)}}">
+                                <img data-type="lazy"
                                     src="{{renderMovieImage($phim, 'thumb')}}"
                                     data-src="{{renderMovieImage($phim, 'thumb')}}"
                                     decoding="async"
                                     class="ts-post-image wp-post-image attachment-medium size-medium"
-                                    itemprop="image" title="{{$phim->name}}" alt="{{$phim->name}}" width="212"
-                                    height="300"/> </a></div>
+                                    itemprop="image" title="{{$phim->name}}" alt="{{$phim->name}}" width="212" height="300"/>
+                            </a>
+                        </div>
                         <div class="info-left">
                             <div class="title">
-                                <div class="rating">
-                                    <div class="vote">
-                                        <div class="site-vote">
-                                            <span class="fa fa-star" aria-hidden="true"><span></span></span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <span class="ellipsis"><a href="{{route('movie', $phim->slug)}}">{{$phim->name}}</a></span>
                                 <span class="release-year ellipsis">{{$phim->name}} ({{$phim->year}})</span>
                             </div>
