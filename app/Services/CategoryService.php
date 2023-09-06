@@ -14,7 +14,7 @@ class CategoryService extends ModelService
     }
 
     public function getAll () {
-        return $this->model->all();
+        return $this->model->whereNotIn('id', [19])->get();
     }
 
     public function getBySlug ($slug) {

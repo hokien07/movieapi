@@ -13,10 +13,9 @@
         <div class="wrapper">
             <div class="pd-expand"></div>
             <div class="postbody">
-                <article id="post-{{$movie->server_id}}" class="post-{{$movie->server_id}} hentry" itemscope="itemscope"
-                         itemtype="http://schema.org/Episode">
+                <article id="post-{{$movie->server_id}}" class="post-{{$movie->server_id}} hentry" itemscope="itemscope" itemtype="http://schema.org/Episode">
                     <div class="ts-breadcrumb bixbox">
-                        <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                        <ol itemtype="http://schema.org/BreadcrumbList">
                             <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                                 <a itemprop="item" href="{{route('home')}}"><span itemprop="name">Xem phim</span></a>
                                 <meta itemprop="position" content="1">
@@ -48,24 +47,6 @@
                                 </div>
                                 <div class="lm">
                                     <h1 class="entry-title" itemprop="name">{{ $movie->name}}</h1>
-                                    <div class="box-rating" hidden>
-                                        <div class="rate-title">
-                                            <span class="rate-lable"></span>
-                                        </div>
-                                        <div id="div_average" style="">
-                                        <span class="average" id="average" itemprop="ratingValue">8.0</span>điểm / <span id="rate_count" itemprop="reviewCount">1</span> lượt đánh giá
-                                        </div>
-                                        <div id="star" data-score="8.0"
-                                             style="cursor: pointer;">
-                                        </div>
-                                        <div>
-                                            <span id="hint"></span>
-                                            <meta itemprop="bestRating" content="10" />
-                                            <meta itemprop="worstRating" content="1" />
-                                            <meta itemprop="ratingValue" content="8.0" />
-                                            <meta itemprop="ratingCount" content="1" />
-                                        </div>
-                                    </div>
                                     <span class="epx">
                                         <span class="lg">{{$movie->lang}}</span>
                                     </span>
@@ -222,6 +203,7 @@
     </div>
 </div>
 <script src='{{asset('js/jquery.min.js')}}'></script>
+<script src='{{asset('js/main.js')}}'></script>
 <script src="{{asset('js/p2p-media-loader-core.min.js')}}"></script>
 <script src="{{asset('js/p2p-media-loader-hlsjs.min.js')}}"></script>
 <script src="{{asset('js/jwplayer-8.9.3.js')}}"></script>

@@ -24,6 +24,10 @@
                             src="{{renderMovieImage($movie, 'poster')}}"
                             data-src="{{renderMovieImage($movie, 'poster')}}"
                             alt="{{$movie->name}}"/>
+
+                        <a href="{{route('movie.view',[$movie->slug, $episode->name])}}" class="gp"
+                           aria-label="Xem phim {{$movie->name}}"><i class="fa fa-play-circle" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="bigcontent">
@@ -36,24 +40,11 @@
                                  class="ts-post-image wp-post-image attachment-post-thumbnail size-post-thumbnail"
                                  title="{{$movie->name}}" alt="{{$movie->origin_name}}"
                                  width="900" height="1594"/>
-                            <meta itemprop="url" content="{{renderMovieImage($movie, 'thumb')}}">
-                            <meta itemprop="width" content="900">
-                            <meta itemprop="height" content="1594">
                         </div>
                         <div class="rt">
-                            <div class="rating" hidden>
-                                <strong>Rating 8.0</strong>
-                                <div class="rating-prc" itemscope="itemscope" itemprop="aggregateRating" itemtype="//schema.org/AggregateRating">
-                                    <meta itemprop="ratingValue" content="8.0">
-                                    <meta itemprop="worstRating" content="1">
-                                    <meta itemprop="bestRating" content="10">
-                                    <meta itemprop="ratingCount" content="1">
-                                    <div class="rtp"><div class="rtb"><span style="width:80%"></span></div></div>
-                                </div>
-                            </div>
                             <a style="display: block"
                                href="{{route('movie.view', [$movie->slug, $episode->name])}}" class="bookmark">
-                                <i class="far fa-play-circle" aria-hidden="true"></i> Xem Phim</a>
+                                <i class="fa fa-play-circle" aria-hidden="true"></i> Xem Phim</a>
                         </div>
                     </div>
                     <div class="infox">
@@ -148,9 +139,11 @@
                                         <div class="limit">
                                             <div class="status Completed">{{getEpxStatus($movie->status)}}</div>
                                             <div class="typez Drama">{{getMovieType($movie->type)}}</div>
-                                            <div class="ply"><i class="far fa-play-circle"></i></div>
-                                            <div class="bt"><span class="epx">{{getMovieType($movie->type)}}</span> <span
-                                                    class="sb Soft Sub">{{$movie->lang}}</span></div>
+                                            <div class="ply"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+                                            <div class="bt">
+                                                <span class="epx">{{getMovieType($movie->type)}}</span>
+                                                <span class="sb Soft Sub">{{$movie->lang}}</span>
+                                            </div>
                                             <img data-type="lazy"
                                                  src="{{renderMovieImage($movie, 'thumb')}}"
                                                  data-src="{{renderMovieImage($movie, 'thumb')}}"
