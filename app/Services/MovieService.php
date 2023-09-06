@@ -13,27 +13,38 @@ class MovieService extends ModelService
 
     public function getByType(string $type, int $limit = 10, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return $this->model->where('type', $type)->orderBy($sort, "DESC")->limit($limit)->get();
+            return $this->model->where('type', $type)
+                ->whereHas('categories',  function ($q) {
+                    $q->whereNotIn('id', 19);
+                })
+                ->orderBy($sort, "DESC")->limit($limit)->get();
         }
-        return $this->model->where('type', $type)->orderBy($sort, "DESC")->paginate($limit);
+        return $this->model->where('type', $type)
+            ->whereHas('categories',  function ($q) {
+                $q->whereNotIn('id', 19);
+            })->orderBy($sort, "DESC")->paginate($limit);
     }
 
     public function getPhimRap(int $limit = 5, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->limit($limit)->get();
+            return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
         }
-        return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->paginate($limit);
+        return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
     }
 
     public function getRanDomForSlide( $paginate = false) {
         if(!$paginate) {
-            return $this->model->inRandomOrder()->limit(10)->get();
+            return $this->model->whereHas('categories',  function ($q) {
+                $q->whereNotIn('id', 19);
+            })->inRandomOrder()->limit(10)->get();
         }
-        return $this->model->inRandomOrder()->paginate(20);
+        return $this->model->whereHas('categories',  function ($q) {
+            $q->whereNotIn('id', 19);
+        })->inRandomOrder()->paginate(20);
     }
 
     public function getTrending() {
-        return $this->model->orderBy('view', "DESC")->first();
+        return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->first();
     }
 
     public function getSapChieu() {
