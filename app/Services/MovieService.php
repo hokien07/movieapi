@@ -15,13 +15,13 @@ class MovieService extends ModelService
         if(!$paginate) {
             return $this->model->where('type', $type)
                 ->whereHas('categories',  function ($q) {
-                    $q->whereNotIn('id', [19]);
+                    $q->whereNotIn('category_id', [19]);
                 })
                 ->orderBy($sort, "DESC")->limit($limit)->get();
         }
         return $this->model->where('type', $type)
             ->whereHas('categories',  function ($q) {
-                $q->whereNotIn('id', [19]);
+                $q->whereNotIn('category_id', [19]);
             })->orderBy($sort, "DESC")->paginate($limit);
     }
 
@@ -35,11 +35,11 @@ class MovieService extends ModelService
     public function getRanDomForSlide( $paginate = false) {
         if(!$paginate) {
             return $this->model->whereHas('categories',  function ($q) {
-                $q->whereNotIn('id', [19]);
+                $q->whereNotIn('category_id', [19]);
             })->inRandomOrder()->limit(10)->get();
         }
         return $this->model->whereHas('categories',  function ($q) {
-            $q->whereNotIn('id', [19]);
+            $q->whereNotIn('category_id', [19]);
         })->inRandomOrder()->paginate(20);
     }
 
@@ -59,7 +59,7 @@ class MovieService extends ModelService
 
     public function getSameMovieByCatIds (array $catIds, int $movieId) {
         return $this->model->whereHas('categories', function ($query) use ($catIds) {
-            $query->whereIn('category_id', $catIds)->whereNotIn('id', [19]);
+            $query->whereIn('category_id', $catIds)->whereNotIn('category_id', [19]);
         })
             ->where('id', '<>', $movieId)
             ->limit(30)->get();
@@ -82,22 +82,22 @@ class MovieService extends ModelService
                 $q->where('name', 'LIKE', "%$search%");
             })
             ->whereHas('categories', function ($q) use ($search){
-                $q->where('name', 'LIKE', "%$search%")->whereNotIn('id', [19]);
+                $q->where('name', 'LIKE', "%$search%")->whereNotIn('category_id', [19]);
             })->paginate(20);
     }
 
 
     public function getPhimThuyetMinh ($limit = 20, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return $this->model->where('lang', 'LIKE', "%Thuyết Minh%")->orderBy('view', "DESC")->limit($limit)->get();
+            return $this->model->where('lang', 'LIKE', "%Thuyết Minh%")->orderBy($sort, "DESC")->limit($limit)->get();
         }
-        return $this->model->where('lang', 'LIKE', "%Thuyết Minh%")->orderBy('view', "DESC")->paginate($limit);
+        return $this->model->where('lang', 'LIKE', "%Thuyết Minh%")->orderBy($sort, "DESC")->paginate($limit);
     }
 
     public function getPhimLongTieng ($limit = 20, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return $this->model->where('lang', 'LIKE', "%Lồng Tiếng%")->orderBy('view', "DESC")->limit($limit)->get();
+            return $this->model->where('lang', 'LIKE', "%Lồng Tiếng%")->orderBy($sort, "DESC")->limit($limit)->get();
         }
-        return $this->model->where('lang', 'LIKE', "%Lồng Tiếng%")->orderBy('view', "DESC")->paginate($limit);
+        return $this->model->where('lang', 'LIKE', "%Lồng Tiếng%")->orderBy($sort, "DESC")->paginate($limit);
     }
 }
