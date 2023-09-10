@@ -568,6 +568,19 @@ body {
     outline: 0
 }
 
+.surprise1 {
+    float: right;
+    color: #fff;
+    font-size: 12px;
+    margin-right: 10px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    padding: 5px 10px;
+    line-height: 1.5;
+    height: 28px
+}
+
 .surprise {
     float: right;
     margin-top: 7px;

@@ -30,7 +30,14 @@
                     </li>
                 </ul>
             </span>
-        <a href="{{route('home')}}" class="surprise"><i class="fa fa-star-o" aria-hidden="true"></i>Fanpage</a>
+        <div class="surprise1">
+            <a href="https://go.isclix.com/deep_link/v5/4573041870385972192/5384285971240929121?url_enc=aHR0cHM6Ly9hcHAuYWRqdXN0LmNvbS8xM3ZudGgzZA%3D%3D" target="_blank">
+                <img src="{{asset('img/icons-app-store-32.png')}}" alt="">
+            </a>
+            <a href="https://go.isclix.com/deep_link/v5/4573041870385972192/5384459630016244301?url_enc=aHR0cHM6Ly9wbGF5Lmdvb2dsZS5jb20vc3RvcmUvYXBwcy9kZXRhaWxzP2lkPXZuLmZpbXBsdXMuYXBwLmFuZA%3D%3D" target="_blank">
+                <img src="{{asset('img/icons-android-32.png')}}" alt="">
+            </a>
+        </div>
         <div class="clear"></div>
     </div>
 </div>
