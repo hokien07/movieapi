@@ -17,10 +17,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-//        $schedule->job(new CronJob)->everyMinute();
-//        $schedule->job(new CronDetailJob)->everyFiveMinutes();
-//        $schedule->command('cron:download')->everyFiveMinutes();
-//        $schedule->command('cron:delete')->everyTwoHours();
+        $schedule->job(new CronJob)->everyMinute();
+        $schedule->job(new CronDetailJob)->everyFiveMinutes();
+        $schedule->command('telescope:prune --hours=24')->dailyAt('00:01');
     }
 
     /**

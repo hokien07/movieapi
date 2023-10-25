@@ -15,7 +15,7 @@ class CreateActorTable extends Migration
     {
         Schema::create('actors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 50)->unique();
+            $table->string('name')->unique();
             $table->string('avatar')->nullable();
             $table->integer('age')->nullable();
             $table->tinyInteger('gender')->nullable();

@@ -15,7 +15,7 @@ class CreateServersTable extends Migration
     {
         Schema::create('servers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique()->index();
+            $table->string('name')->unique()->index();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

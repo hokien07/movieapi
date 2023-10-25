@@ -47,7 +47,7 @@ class CronJob implements ShouldQueue
             $start = 1;
             $cron = Cron::query()->create([
                 "date" => now(),
-                "total" => 0,
+                "total" => 21,
                 "current" => 0,
                 "status" => 0
             ]);
@@ -59,7 +59,7 @@ class CronJob implements ShouldQueue
 
         $cron->fill([
             "date" => now(),
-            "total" => $content->pagination->totalPages,
+            "total" => 21,
             "current" => $start,
             "status" => 0
         ])->save();

@@ -17,6 +17,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class CronDetailJob implements ShouldQueue
 {
@@ -41,7 +43,7 @@ class CronDetailJob implements ShouldQueue
      */
     public function handle()
     {
-        $details = CronDetail::query()->where('status', 0)->limit(100)->get();
+        $details = CronDetail::query()->where('status', 0)->limit(50)->get();
         foreach ($details as $detail) {
             DB::beginTransaction();
             try {
@@ -49,6 +51,7 @@ class CronDetailJob implements ShouldQueue
                 $client = new Client();
                 $content = $client->get($this->baseUrl . $movie->slug);
                 $content = json_decode($content->getBody()->getContents());
+
                 $movie = $this->storeMovie($content->movie);
                 $actorIds = $this->storeActor($content->movie->actor);
                 $movie->actors()->sync($actorIds);
@@ -68,11 +71,10 @@ class CronDetailJob implements ShouldQueue
                 DB::commit();
             }catch (\Exception $e) {
                 $detail->fill(['status' => 2])->save();
+                Log::error("Crawl movie detail failed ==> " . $e->getMessage());
                 DB::commit();
             }
         }
-
-
     }
 
     private function storeEpisodes (array $episodes) : array
@@ -181,9 +183,14 @@ class CronDetailJob implements ShouldQueue
     }
 
     private function storeMovie($movie) {
-        $item = Movie::query()->where("server_id", $movie->_id)->first();
+        $item = Movie::query()->where("slug", $movie->slug)->first();
+        $thumbName = $this->getFileName($movie->thumb_url);
+        $posterName = $this->getFileName($movie->poster_url);
+
         if(!$item) {
-            $item = Movie::query()->create([
+            Storage::disk('public')->put("$movie->_id/$thumbName", file_get_contents($movie->thumb_url));
+            Storage::disk('public')->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
+            return Movie::query()->create([
                 "server_id" => $movie->_id,
                 "name" => $movie->name,
                 "origin_name" =>$movie->origin_name,
@@ -191,8 +198,8 @@ class CronDetailJob implements ShouldQueue
                 "description" =>$movie->content,
                 "type" => $movie->type,
                 "status"  => $movie->status,
-                "thumb_url" => $movie->thumb_url,
-                "poster" => $movie->poster_url,
+                "thumb_url" => $thumbName,
+                "poster" => $posterName,
                 "is_copyright" => $movie->is_copyright,
                 "sub_docquyen" => $movie->sub_docquyen,
                 "chieu_rap" => $movie->chieurap,
@@ -206,9 +213,20 @@ class CronDetailJob implements ShouldQueue
                 "show_time"  => $movie->showtimes,
                 "year" => $movie->year,
                 "view" => $movie->view,
-                "active" => 1
+                "active" => 1,
+                "dimage" => 1
             ]);
         }
-        return $item;
+
+        Storage::disk('public')->delete(["$item->_id/$thumbName", "$item->slug/$posterName"]);
+        Storage::disk('public')->put("$item->_id/$thumbName", file_get_contents($movie->thumb_url));
+        Storage::disk('public')->put("$item->_id/$posterName", file_get_contents($movie->poster_url));
+        $item->fill([ "thumb_url" => $thumbName, "poster" => $posterName])->save();
+        return $item->refresh();
+    }
+
+    private function getFileName(string $link) {
+        $arrLink = explode("/", $link);
+        return end($arrLink);
     }
 }

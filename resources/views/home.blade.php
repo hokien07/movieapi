@@ -50,6 +50,7 @@
                 </div>
                 @endforeach
             </div>
+            @if($trending)
             <div class="trending">
                 <div class="tdb">
                     <a href="{{route('movie', $trending->slug)}}">
@@ -67,6 +68,7 @@
                         </div>
                     </a></div>
             </div>
+            @endif
         </div>
         <div class="bixbox">
             <div class="releases latesthome">

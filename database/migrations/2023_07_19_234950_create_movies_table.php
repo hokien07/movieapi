@@ -15,13 +15,13 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('server_id', 50)->unique();
-            $table->string('name', 50)->unique()->index();
-            $table->string("origin_name", 50)->unique()->index();
-            $table->string('slug',50)->unique()->index();
+            $table->string('server_id')->unique();
+            $table->string('name')->unique()->index();
+            $table->string("origin_name")->unique()->index();
+            $table->string('slug')->unique()->index();
             $table->text('description')->nullable();
-            $table->string('type',20);
-            $table->string('status', 20)->default('ongoing');
+            $table->string('type');
+            $table->string('status')->default('ongoing');
             $table->string('thumb_url')->nullable();
             $table->string('poster')->nullable();
             $table->tinyInteger("is_copyright")->default(1);
