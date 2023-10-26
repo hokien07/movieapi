@@ -36,10 +36,12 @@ class CronJob implements ShouldQueue
     public function handle()
     {
 
-        $cron = Cron::query()->where('status', 0)->first();
+        $cron = Cron::query()->where('date', now()->format("Y-m-d"))->first();
         if($cron) {
-            $start = $cron->current + 1;
+            if($cron->status == 1) return;
+            $start = $cron->current;
             if($start == $cron->total) {
+                $start += 1;
                 $cron->fill(['status' => 1])->save();
                 return;
             }
