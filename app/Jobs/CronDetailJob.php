@@ -218,9 +218,9 @@ class CronDetailJob implements ShouldQueue
             ]);
         }
 
-        Storage::disk('public')->delete(["$item->_id/$thumbName", "$item->slug/$posterName"]);
-        Storage::disk('public')->put("$item->_id/$thumbName", file_get_contents($movie->thumb_url));
-        Storage::disk('public')->put("$item->_id/$posterName", file_get_contents($movie->poster_url));
+        Storage::disk('public')->delete(["$item->server_id/$thumbName", "$item->slug/$posterName"]);
+        Storage::disk('public')->put("$item->server_id/$thumbName", file_get_contents($movie->thumb_url));
+        Storage::disk('public')->put("$item->server_id/$posterName", file_get_contents($movie->poster_url));
         $item->fill([ "thumb_url" => $thumbName, "poster" => $posterName])->save();
         return $item->refresh();
     }
