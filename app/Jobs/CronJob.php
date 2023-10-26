@@ -59,7 +59,6 @@ class CronJob implements ShouldQueue
 
         $cron->fill([
             "date" => now(),
-            "total" => 21,
             "current" => $start,
             "status" => 0
         ])->save();
