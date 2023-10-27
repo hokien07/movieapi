@@ -41,10 +41,10 @@ class CronJob implements ShouldQueue
             if($cron->status == 1) return;
             $start = $cron->current;
             if($start == $cron->total) {
-                $start += 1;
                 $cron->fill(['status' => 1])->save();
                 return;
             }
+            $start += 1;
         }else {
             $start = 1;
             $cron = Cron::query()->create([

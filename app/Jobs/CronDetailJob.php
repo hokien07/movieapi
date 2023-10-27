@@ -43,7 +43,7 @@ class CronDetailJob implements ShouldQueue
      */
     public function handle()
     {
-        $details = CronDetail::query()->where('status', 0)->limit(50)->get();
+        $details = CronDetail::query()->where('status', 0)->limit(2)->get();
         foreach ($details as $detail) {
             DB::beginTransaction();
             try {
