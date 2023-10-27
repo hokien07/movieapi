@@ -25,7 +25,7 @@ class MovieService extends ModelService
             })->orderBy($sort, "DESC")->paginate($limit);
     }
 
-    public function getPhimRap(int $limit = 5, string $sort = 'view', $paginate = false) {
+    public function getPhimRap(int $limit = 6, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
             return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
         }
