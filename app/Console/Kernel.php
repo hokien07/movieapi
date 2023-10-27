@@ -17,8 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new CronJob)->everyMinute();
-        $schedule->job(new CronDetailJob)->everyFiveMinutes();
+        $schedule->job(new CronJob)->everyMinute()->days([Schedule::SATURDAY, Schedule::SUNDAY])->between('00:00', "03:00");
+        $schedule->job(new CronDetailJob)->everyFiveMinutes()->days([Schedule::SATURDAY, Schedule::SUNDAY])->between('00:00', "03:00");;
         $schedule->command('telescope:prune --hours=24')->dailyAt('00:01');
     }
 
