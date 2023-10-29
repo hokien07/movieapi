@@ -3,7 +3,7 @@
 
 @include('layouts.head')
 
-<body data-rsssl=1 class='tsdefaultlayout' itemscope='itemscope'>
+<body data-rsssl=1 class='tsdefaultlayout'>
 <div id='shadow'></div>
 <div class="mainholder">
     @include('layouts.header')

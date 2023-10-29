@@ -1,5 +1,4 @@
-<footer id="colophon" class="site-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter"
-        role="contentinfo">
+<footer id="colophon" class="site-footer" role="contentinfo">
     <div class="footermenu">
         <div class="menu-foot-container">
             <ul id="menu-foot" class="menu">

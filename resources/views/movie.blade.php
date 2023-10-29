@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="postbody">
-        <article id="post-{{$movie->server_id}}" class="post-{{$movie->server_id}} hentry" itemscope="itemscope"
-                 itemtype="http://schema.org/CreativeWorkSeries">
+        <article id="post-{{$movie->server_id}}" class="post-{{$movie->server_id}} hentry">
             <div class="ts-breadcrumb bixbox">
                 <ol>
                     <li>
@@ -32,7 +31,7 @@
                 </div>
                 <div class="bigcontent">
                     <div class="thumbook">
-                        <div class="thumb" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                        <div class="thumb">
                             <img data-type="lazy"
                                  src="{{renderMovieImage($movie, 'thumb')}}"
                                  data-src="{{renderMovieImage($movie, 'thumb')}}"
@@ -118,7 +117,7 @@
                     <div class="listupd">
                         <div id="series-390" class="tab-pane active">
                             @foreach($movies as $movie)
-                                <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                                <article class="bs">
                                 <div class="bsx">
                                     <a href="{{route('movie', $movie->slug)}}" itemprop="url"
                                                     title="{{$movie->name}} ({{$movie->origin_name}}) [{{$movie->year}}]"

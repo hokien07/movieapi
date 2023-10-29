@@ -15,18 +15,18 @@
             <div class="postbody">
                 <article id="post-{{$movie->server_id}}" class="post-{{$movie->server_id}} hentry" itemscope="itemscope" itemtype="http://schema.org/Episode">
                     <div class="ts-breadcrumb bixbox">
-                        <ol itemtype="http://schema.org/BreadcrumbList">
-                            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <ol>
+                            <li>
                                 <a itemprop="item" href="{{route('home')}}"><span itemprop="name">Xem phim</span></a>
                                 <meta itemprop="position" content="1">
                             </li>
                             ›
-                            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <li>
                                 <a itemprop="item" href="{{route('movie', $movie->slug)}}"><span itemprop="name">{{ $movie->name}}</span></a>
                                 <meta itemprop="position" content="2">
                             </li>
                             ›
-                            <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                            <li>
                                 <span itemprop="name">Tập {{$firstEpisode->name}}</span>
                                 <meta itemprop="position" content="3">
                             </li>
@@ -36,7 +36,7 @@
                     <div class="megavid">
                         <div class="mvelement">
                             <div class="item meta">
-                                <div class="tb" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                                <div class="tb">
                                     <img src="{{renderMovieImage($movie, 'thumb')}}" data-src="{{renderMovieImage($movie, 'thumb')}}"
                                          decoding="async" class="ts-post-image wp-post-image attachment-medium size-medium" width="169"
                                          height="300" />
@@ -144,22 +144,12 @@
                         </div>
                     </div>
                     <div class="bixbox">
-                        <div class="releases"><h3><span>Bình luận</span></h3></div>
-                        <div class="cmt commentx">
-                            <div class="box-comment" id="tabs-facebook" style="background: linear-gradient(to right, #ffff, #ffff);">
-                                <div class="fb-comments" data-href="{{route('movie', $movie->slug)}}" data-width="100%"
-                                     data-numposts="10" data-order-by="reverse_time" data-colorscheme="light">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bixbox">
                         <div class="releases"><h3>Phim cùng thể loại</h3></div>
                         <div class="series-gen">
                             <div class="listupd">
                                 <div id="series-390" class="tab-pane active">
                                     @foreach($movies as $phim)
-                                        <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                                        <article class="bs">
                                             <div class="bsx">
                                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url"
                                                    title="{{$phim->name}} ({{$phim->origin_name}}) [{{$phim->year}}]"

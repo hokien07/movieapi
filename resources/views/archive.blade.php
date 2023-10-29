@@ -9,7 +9,7 @@
                 <div class="clear"></div>
                 <div class="listupd">
                     @foreach($movies as $phim)
-                    <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                    <article class="bs">
                         <div class="bsx">
                             <a href="{{route('movie', $phim->slug)}}"
                                             itemprop="url"

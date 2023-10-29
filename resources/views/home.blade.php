@@ -77,7 +77,7 @@
             <div class="listupd normal">
                 <div class="excstf">
                     @foreach($phimRap as $phim)
-                    <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                    <article class="bs">
                         <div class="bsx">
                             <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                 <div class="limit">
@@ -111,7 +111,7 @@
             <div class="listupd normal">
                 <div class="excstf">
                     @foreach($phimBo as $phim)
-                        <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                        <article class="bs">
                             <div class="bsx">
                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                     <div class="limit">
@@ -145,7 +145,7 @@
             <div class="listupd normal">
                 <div class="excstf">
                     @foreach($phimLe as $phim)
-                        <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                        <article class="bs">
                             <div class="bsx">
                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                     <div class="limit">
@@ -179,7 +179,7 @@
             <div class="listupd normal">
                 <div class="excstf">
                     @foreach($phimHoatHinh as $phim)
-                        <article class="bs" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+                        <article class="bs">
                             <div class="bsx">
                                 <a href="{{route('movie', $phim->slug)}}" itemprop="url" title="{{$phim->name}}" class="tip" rel="{{$phim->server_id}}">
                                     <div class="limit">
