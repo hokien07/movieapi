@@ -3,6 +3,7 @@
 
 namespace App\Services;
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 
 class CatService extends ModelService
 {
@@ -12,7 +13,9 @@ class CatService extends ModelService
     }
 
     public function getAll () {
-        return $this->model->query()->get();
+        return Cache::remember('categories', $this->cacheTime, function () {
+           return $this->model->query()->get();
+        });
     }
 
 }

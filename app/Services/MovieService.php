@@ -3,6 +3,7 @@
 
 namespace App\Services;
 use App\Models\Movie;
+use Illuminate\Support\Facades\Cache;
 
 class MovieService extends ModelService
 {
@@ -13,48 +14,66 @@ class MovieService extends ModelService
 
     public function getByType(string $type, int $limit = 10, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
+            return Cache::remember("type_limit_". $type, $this->cacheTime, function () use ($type, $sort, $limit){
+                return $this->model->where('type', $type)
+                    ->whereHas('categories',  function ($q) {
+                        $q->whereNotIn('category_id', [env("PHIM_18")]);
+                    })
+                    ->orderBy($sort, "DESC")->limit($limit)->get();
+            });
+        }
+        return Cache::remember("type_limit_". $type, $this->cacheTime, function () use ($type, $sort, $limit){
             return $this->model->where('type', $type)
                 ->whereHas('categories',  function ($q) {
                     $q->whereNotIn('category_id', [env("PHIM_18")]);
-                })
-                ->orderBy($sort, "DESC")->limit($limit)->get();
-        }
-        return $this->model->where('type', $type)
-            ->whereHas('categories',  function ($q) {
-                $q->whereNotIn('category_id', [env("PHIM_18")]);
-            })->orderBy($sort, "DESC")->paginate($limit);
+                })->orderBy($sort, "DESC")->paginate($limit);
+        });
     }
 
     public function getPhimRap(int $limit = 6, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
+            return Cache::remember('chieu_rap_limit', $this->cacheTime, function () use ($sort, $limit) {
+                return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
+            });
         }
-        return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
+        return Cache::remember('chieu_rap', $this->cacheTime, function () use ($sort, $limit) {
+            $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
+        });
     }
 
     public function getRanDomForSlide( $paginate = false) {
         if(!$paginate) {
+            return Cache::remember('slide_limit', $this->cacheTime, function () {
+                return $this->model->whereHas('categories',  function ($q) {
+                    $q->whereNotIn('category_id', [env("PHIM_18")]);
+                })->inRandomOrder()->limit(10)->get();
+            });
+        }
+        return Cache::remember('slide', $this->cacheTime, function () {
             return $this->model->whereHas('categories',  function ($q) {
                 $q->whereNotIn('category_id', [env("PHIM_18")]);
-            })->inRandomOrder()->limit(10)->get();
-        }
-        return $this->model->whereHas('categories',  function ($q) {
-            $q->whereNotIn('category_id', [env("PHIM_18")]);
-        })->inRandomOrder()->paginate(20);
+            })->inRandomOrder()->paginate(20);
+        });
     }
 
     public function getTrending() {
-        return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->first();
+        return Cache::remember('getTrending', $this->cacheTime, function () {
+            return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->first();
+        });
     }
 
     public function getSapChieu() {
-        return $this->model->where('status', "ongoing")
-            ->whereNotNull('trailer_url')
-            ->orderBy('view', "DESC")->limit(10)->get();
+        return Cache::remember('getSapChieu', $this->cacheTime, function () {
+           return $this->model->where('status', "ongoing")
+               ->whereNotNull('trailer_url')
+               ->orderBy('view', "DESC")->limit(10)->get();
+        });
     }
 
     public function findBySlug($slug) {
-        return $this->model->where('slug', $slug)->first();
+        return Cache::remember($slug, $this->cacheTime, function () use ($slug) {
+           return $this->model->where('slug', $slug)->first();
+        });
     }
 
     public function getSameMovieByCatIds (array $catIds, int $movieId) {

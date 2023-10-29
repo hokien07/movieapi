@@ -53,21 +53,23 @@ class CronDetailJob implements ShouldQueue
                 $content = json_decode($content->getBody()->getContents());
 
                 $movie = $this->storeMovie($content->movie);
-                $actorIds = $this->storeActor($content->movie->actor);
-                $movie->actors()->sync($actorIds);
+                if($movie) {
+                    $actorIds = $this->storeActor($content->movie->actor);
+                    $movie->actors()->sync($actorIds);
 
-                $directors = $this->storeDirector($content->movie->director);
-                $movie->directors()->sync($directors);
+                    $directors = $this->storeDirector($content->movie->director);
+                    $movie->directors()->sync($directors);
 
-                $countries = $this->storeCountry($content->movie->country);
-                $movie->countries()->sync($countries);
+                    $countries = $this->storeCountry($content->movie->country);
+                    $movie->countries()->sync($countries);
 
-                $categories = $this->storeCategory($content->movie->category);
-                $movie->categories()->sync($categories);
+                    $categories = $this->storeCategory($content->movie->category);
+                    $movie->categories()->sync($categories);
 
-                $episodes = $this->storeEpisodes($content->episodes);
-                $movie->episodes()->sync($episodes);
-                $detail->fill(['status' => 1])->save();
+                    $episodes = $this->storeEpisodes($content->episodes);
+                    $movie->episodes()->sync($episodes);
+                    $detail->fill(['status' => 1])->save();
+                }
                 DB::commit();
             }catch (\Exception $e) {
                 $detail->fill(['status' => 2])->save();
@@ -183,6 +185,7 @@ class CronDetailJob implements ShouldQueue
     }
 
     private function storeMovie($movie) {
+        if($movie->view == 0) return false;
         $item = Movie::query()->where("slug", $movie->slug)->first();
         $thumbName = $this->getFileName($movie->thumb_url);
         $posterName = $this->getFileName($movie->poster_url);

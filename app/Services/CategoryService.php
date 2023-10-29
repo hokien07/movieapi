@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryService extends ModelService
 {
@@ -14,10 +15,14 @@ class CategoryService extends ModelService
     }
 
     public function getAll () {
-        return $this->model->whereNotIn('id', [19])->get();
+        return Cache::remember('categories', $this->cacheTime, function () {
+           return $this->model->whereNotIn('id', [env('PHIM_18')])->get();
+        });
     }
 
     public function getBySlug ($slug) {
-        return $this->model->where('slug', $slug)->first();
+        return Cache::remember($slug, $this->cacheTime, function () use ($slug) {
+            return $this->model->where('slug', $slug)->first();
+        });
     }
 }

@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use App\Models\Actor;
+use Illuminate\Support\Facades\Cache;
 
 class ActorService extends ModelService
 {
@@ -14,6 +15,8 @@ class ActorService extends ModelService
     }
 
     public function findById ($id) {
-        return $this->model->where('id', $id)->first();
+        return Cache::remember('actor_' . $id, $this->cacheTime, function () use ($id) {
+            return $this->model->where('id', $id)->first();
+        });
     }
 }
