@@ -54,7 +54,7 @@ class MovieService extends ModelService
 
     public function getTrending() {
         return Cache::remember('getTrending', $this->cacheTime, function () {
-            return $this->model->where('chieu_rap', 1)->orderBy('view', "DESC")->first();
+            return $this->model->orderBy('view', "DESC")->first();
         });
     }
 
