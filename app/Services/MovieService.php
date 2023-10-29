@@ -77,7 +77,7 @@ class MovieService extends ModelService
             $query->whereIn('category_id', $catIds)->whereNotIn('category_id', [env("PHIM_18")]);
         })
             ->where('id', '<>', $movieId)
-            ->limit(30)->get();
+            ->limit(10)->get();
     }
 
     public function filter ($search) {
