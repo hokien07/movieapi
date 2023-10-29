@@ -14,7 +14,7 @@ class MovieService extends ModelService
 
     public function getByType(string $type, int $limit = 10, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return Cache::remember("type_limit_". $type, $this->cacheTime, function () use ($type, $sort, $limit){
+            return Cache::remember("type_limit_". $limit. $type, $this->cacheTime, function () use ($type, $sort, $limit){
                 return $this->model->where('type', $type)
                     ->whereHas('categories',  function ($q) {
                         $q->whereNotIn('category_id', [env("PHIM_18")]);
@@ -22,7 +22,7 @@ class MovieService extends ModelService
                     ->orderBy($sort, "DESC")->limit($limit)->get();
             });
         }
-        return Cache::remember("type_limit_". $type, $this->cacheTime, function () use ($type, $sort, $limit){
+        return Cache::remember("type_paginate_" . $paginate . $type, $this->cacheTime, function () use ($type, $sort, $limit){
             return $this->model->where('type', $type)
                 ->whereHas('categories',  function ($q) {
                     $q->whereNotIn('category_id', [env("PHIM_18")]);
@@ -32,7 +32,7 @@ class MovieService extends ModelService
 
     public function getPhimRap(int $limit = 6, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return Cache::remember('chieu_rap_limit', $this->cacheTime, function () use ($sort, $limit) {
+            return Cache::remember('chieu_rap_limit_'. $limit, $this->cacheTime, function () use ($sort, $limit) {
                 return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
             });
         }
@@ -41,19 +41,15 @@ class MovieService extends ModelService
         });
     }
 
-    public function getRanDomForSlide( $paginate = false) {
+    public function getRanDomForSlide( $paginate = false, $limit = 10) {
         if(!$paginate) {
-            return Cache::remember('slide_limit', $this->cacheTime, function () {
-                return $this->model->whereHas('categories',  function ($q) {
-                    $q->whereNotIn('category_id', [env("PHIM_18")]);
-                })->inRandomOrder()->limit(10)->get();
-            });
-        }
-        return Cache::remember('slide', $this->cacheTime, function () {
             return $this->model->whereHas('categories',  function ($q) {
                 $q->whereNotIn('category_id', [env("PHIM_18")]);
-            })->inRandomOrder()->paginate(20);
-        });
+            })->inRandomOrder()->limit($limit)->get();
+        }
+        return $this->model->whereHas('categories',  function ($q) {
+            $q->whereNotIn('category_id', [env("PHIM_18")]);
+        })->inRandomOrder()->paginate($paginate);
     }
 
     public function getTrending() {
