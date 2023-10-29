@@ -30,7 +30,7 @@ class MovieService extends ModelService
         });
     }
 
-    public function getPhimRap(int $limit = 6, string $sort = 'view', $paginate = false) {
+    public function getPhimRap(int $limit = 10, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
             return Cache::remember('chieu_rap_limit_'. $limit, $this->cacheTime, function () use ($sort, $limit) {
                 return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
