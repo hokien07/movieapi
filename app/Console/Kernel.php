@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
         $schedule->job(new CronJob)->everyMinute()->between('1:00', "3:00");
         $schedule->job(new CronDetailJob)->everyFiveMinutes()->between('1:00', "3:00");;
         $schedule->command('telescope:prune --hours=24')->dailyAt('00:01');
-        $schedule->command('minio:move')->everyFifteenMinutes();
+        $schedule->command('minio:move')->everyThirtyMinutes();
 
     }
 
