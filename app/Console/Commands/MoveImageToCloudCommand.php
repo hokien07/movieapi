@@ -39,7 +39,7 @@ class MoveImageToCloudCommand extends Command
      */
     public function handle()
     {
-        $movies = Movie::query()->where('dimage', 1)->limit(100)->get();
+        $movies = Movie::query()->where('dimage', 1)->limit(20)->get();
         foreach ($movies as $movie) {
             $files = Storage::disk('public')->allFiles($movie->server_id);
             foreach ($files as $file) {
