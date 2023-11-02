@@ -37,7 +37,7 @@ class MovieService extends ModelService
             });
         }
         return Cache::remember('chieu_rap', $this->cacheTime, function () use ($sort, $limit) {
-            $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
+            return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
         });
     }
 
