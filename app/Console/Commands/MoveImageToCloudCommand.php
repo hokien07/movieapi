@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Movie;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class MoveImageToCloudCommand extends Command
@@ -41,13 +42,22 @@ class MoveImageToCloudCommand extends Command
     {
         $movies = Movie::query()->where('dimage', 1)->limit(20)->get();
         foreach ($movies as $movie) {
-            $files = Storage::disk('public')->allFiles($movie->server_id);
-            foreach ($files as $file) {
-                Storage::cloud()->put($file, Storage::disk('public')->get($file));
-                Storage::disk('public')->delete($file);
+            try {
+                $this->info("Moving: " . $movie->origin_name);
+                $files = Storage::disk('public')->allFiles($movie->server_id);
+                foreach ($files as $file) {
+                    Storage::cloud()->put($file, Storage::disk('public')->get($file));
+                    Storage::disk('public')->delete($file);
+                }
+                $movie->fill(['dimage'=> 2])->save();
+            }catch (\Exception $e) {
+                 // Nothing todo.
+                Log::error("Movie imag  failed: " . $e->getMessage());
+                $movie->fill(['dimage'=> 2])->save();
             }
-            $movie->fill(['dimage'=> 2])->save();
         }
         $this->info("Move success: " . count($movies) . ' Movie');
+
+
     }
 }
