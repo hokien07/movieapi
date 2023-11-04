@@ -193,7 +193,9 @@ class CronDetailJob implements ShouldQueue
         if(!$item) {
             try {
                 Storage::cloud()->put("$movie->_id/$thumbName", file_get_contents($movie->thumb_url));
-                Storage::cloud()->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
+                if($movie->poster_url) {
+                    Storage::cloud()->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
+                }
                 return Movie::query()->create([
                     "server_id" => $movie->_id,
                     "name" => $movie->name,
@@ -229,7 +231,9 @@ class CronDetailJob implements ShouldQueue
         try {
             Storage::cloud()->delete(["$item->server_id/$thumbName", "$item->server_id/$posterName"]);
             Storage::cloud()->put("$item->server_id/$thumbName", file_get_contents($movie->thumb_url));
-            Storage::cloud()->put("$item->server_id/$posterName", file_get_contents($movie->poster_url));
+            if($movie->poster_url) {
+                Storage::cloud()->put("$item->server_id/$posterName", file_get_contents($movie->poster_url));
+            }
             $item->fill([ "thumb_url" => $thumbName, "poster" => $posterName])->save();
             return $item->refresh();
         }catch (\Exception $e) {
