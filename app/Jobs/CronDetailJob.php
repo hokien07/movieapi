@@ -43,7 +43,7 @@ class CronDetailJob implements ShouldQueue
      */
     public function handle()
     {
-        $details = CronDetail::query()->where('status', 0)->limit(2)->get();
+        $details = CronDetail::query()->where('status', 0)->limit(100)->get();
         foreach ($details as $detail) {
             DB::beginTransaction();
             try {
@@ -191,41 +191,52 @@ class CronDetailJob implements ShouldQueue
         $posterName = $this->getFileName($movie->poster_url);
 
         if(!$item) {
-            Storage::cloud()->put("$movie->_id/$thumbName", file_get_contents($movie->thumb_url));
-            Storage::cloud()->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
-            return Movie::query()->create([
-                "server_id" => $movie->_id,
-                "name" => $movie->name,
-                "origin_name" =>$movie->origin_name,
-                "slug" =>$movie->slug,
-                "description" =>$movie->content,
-                "type" => $movie->type,
-                "status"  => $movie->status,
-                "thumb_url" => $thumbName,
-                "poster" => $posterName,
-                "is_copyright" => $movie->is_copyright,
-                "sub_docquyen" => $movie->sub_docquyen,
-                "chieu_rap" => $movie->chieurap,
-                "trailer_url" => $movie->trailer_url,
-                "time" => $movie->time,
-                "episode_current" => $movie->episode_current,
-                "episode_total" => $movie->episode_total,
-                "quality"  => $movie->quality,
-                "lang"  => $movie->lang,
-                "noty"  => $movie->notify,
-                "show_time"  => $movie->showtimes,
-                "year" => $movie->year,
-                "view" => $movie->view,
-                "active" => 1,
-                "dimage" => 1
-            ]);
+            try {
+                Storage::cloud()->put("$movie->_id/$thumbName", file_get_contents($movie->thumb_url));
+                Storage::cloud()->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
+                return Movie::query()->create([
+                    "server_id" => $movie->_id,
+                    "name" => $movie->name,
+                    "origin_name" =>$movie->origin_name,
+                    "slug" =>$movie->slug,
+                    "description" =>$movie->content,
+                    "type" => $movie->type,
+                    "status"  => $movie->status,
+                    "thumb_url" => $thumbName,
+                    "poster" => $posterName,
+                    "is_copyright" => $movie->is_copyright,
+                    "sub_docquyen" => $movie->sub_docquyen,
+                    "chieu_rap" => $movie->chieurap,
+                    "trailer_url" => $movie->trailer_url,
+                    "time" => $movie->time,
+                    "episode_current" => $movie->episode_current,
+                    "episode_total" => $movie->episode_total,
+                    "quality"  => $movie->quality,
+                    "lang"  => $movie->lang,
+                    "noty"  => $movie->notify,
+                    "show_time"  => $movie->showtimes,
+                    "year" => $movie->year,
+                    "view" => $movie->view,
+                    "active" => 1,
+                    "dimage" => 1
+                ]);
+            }catch (\Exception $e) {
+                Log::error("Crawl movie detail failed ==> " . $e->getMessage());
+                return null;
+            }
+
+        }
+        try {
+            Storage::cloud()->delete(["$item->server_id/$thumbName", "$item->server_id/$posterName"]);
+            Storage::cloud()->put("$item->server_id/$thumbName", file_get_contents($movie->thumb_url));
+            Storage::cloud()->put("$item->server_id/$posterName", file_get_contents($movie->poster_url));
+            $item->fill([ "thumb_url" => $thumbName, "poster" => $posterName])->save();
+            return $item->refresh();
+        }catch (\Exception $e) {
+            Log::error("Crawl movie detail failed ==> " . $e->getMessage());
+            return null;
         }
 
-        Storage::cloud()->delete(["$item->server_id/$thumbName", "$item->server_id/$posterName"]);
-        Storage::cloud()->put("$item->server_id/$thumbName", file_get_contents($movie->thumb_url));
-        Storage::cloud()->put("$item->server_id/$posterName", file_get_contents($movie->poster_url));
-        $item->fill([ "thumb_url" => $thumbName, "poster" => $posterName])->save();
-        return $item->refresh();
     }
 
     private function getFileName(string $link) {
