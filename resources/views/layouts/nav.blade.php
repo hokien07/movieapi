@@ -25,6 +25,9 @@
                     <li class="menu-item menu-item-type-custom menu-item-object-custom">
                         <a href="{{route('danhsach', 'phim-thuyet-minh')}}" itemprop="url"><span itemprop="name">Phim thuyết minh</span></a>
                     </li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom">
+                        <a href="{{route('danhsach', 'phim-long-tieng')}}" itemprop="url"><span itemprop="name">Phim lồng tiếng</span></a>
+                    </li>
                 </ul>
             </span>
         <div class="clear"></div>
