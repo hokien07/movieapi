@@ -222,7 +222,7 @@ class CronDetailJob implements ShouldQueue
                     "year" => $movie->year,
                     "view" => $movie->view,
                     "active" => 1,
-                    "dimage" => 1
+                    "dimage" => 2
                 ]);
             }catch (\Exception $e) {
                 Log::error("Crawl movie detail failed ==> " . $e->getMessage());
