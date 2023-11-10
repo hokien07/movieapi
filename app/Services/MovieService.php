@@ -52,9 +52,7 @@ class MovieService extends ModelService
 
     public function getSapChieu() {
         return Cache::remember('getSapChieu', $this->cacheTime, function () {
-           return $this->model->where('status', "ongoing")
-               ->whereNotNull('trailer_url')
-               ->orderBy('view', "DESC")->limit(10)->get();
+           return $this->model->orderBy('updated_at', "DESC")->limit(10)->get();
         });
     }
 
