@@ -69,6 +69,8 @@ class CronDetailJob implements ShouldQueue
                     $episodes = $this->storeEpisodes($content->episodes);
                     $movie->episodes()->sync($episodes);
                     $detail->fill(['status' => 1])->save();
+                }else {
+                    $detail->fill(['status' => 2])->save();
                 }
                 DB::commit();
             }catch (\Exception $e) {

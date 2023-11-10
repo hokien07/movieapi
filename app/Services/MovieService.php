@@ -14,31 +14,23 @@ class MovieService extends ModelService
 
     public function getByType(string $type, int $limit = 10, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return Cache::remember("type_limit_". $limit. $type, $this->cacheTime, function () use ($type, $sort, $limit){
-                return $this->model->where('type', $type)
-                    ->whereHas('categories',  function ($q) {
-                        $q->whereNotIn('category_id', [env("PHIM_18")]);
-                    })
-                    ->orderBy($sort, "DESC")->limit($limit)->get();
-            });
-        }
-        return Cache::remember("type_paginate_" . $paginate . $type, $this->cacheTime, function () use ($type, $sort, $limit){
             return $this->model->where('type', $type)
                 ->whereHas('categories',  function ($q) {
                     $q->whereNotIn('category_id', [env("PHIM_18")]);
-                })->orderBy($sort, "DESC")->paginate($limit);
-        });
+                })
+                ->orderBy($sort, "DESC")->limit($limit)->get();
+        }
+        return $this->model->where('type', $type)
+            ->whereHas('categories',  function ($q) {
+                $q->whereNotIn('category_id', [env("PHIM_18")]);
+            })->orderBy($sort, "DESC")->paginate($limit);
     }
 
     public function getPhimRap(int $limit = 10, string $sort = 'view', $paginate = false) {
         if(!$paginate) {
-            return Cache::remember('chieu_rap_limit_'. $limit, $this->cacheTime, function () use ($sort, $limit) {
-                return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
-            });
+            return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->limit($limit)->get();
         }
-        return Cache::remember('chieu_rap', $this->cacheTime, function () use ($sort, $limit) {
-            return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
-        });
+        return $this->model->where('chieu_rap', 1)->orderBy($sort, "DESC")->paginate($limit);
     }
 
     public function getRanDomForSlide( $paginate = false, $limit = 10) {
