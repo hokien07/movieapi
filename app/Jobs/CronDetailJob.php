@@ -187,7 +187,6 @@ class CronDetailJob implements ShouldQueue
     }
 
     private function storeMovie($movie) {
-        if($movie->view == 0) return false;
         $item = Movie::query()->where("slug", $movie->slug)->first();
         $thumbName = $this->getFileName($movie->thumb_url);
         $posterName = $this->getFileName($movie->poster_url);
@@ -228,21 +227,7 @@ class CronDetailJob implements ShouldQueue
                 Log::error("Crawl movie detail failed ==> " . $e->getMessage());
                 return null;
             }
-
         }
-        try {
-            Storage::cloud()->delete(["$item->server_id/$thumbName", "$item->server_id/$posterName"]);
-            Storage::cloud()->put("$item->server_id/$thumbName", file_get_contents($movie->thumb_url));
-            if($movie->poster_url) {
-                Storage::cloud()->put("$item->server_id/$posterName", file_get_contents($movie->poster_url));
-            }
-            $item->fill([ "thumb_url" => $thumbName, "poster" => $posterName])->save();
-            return $item->refresh();
-        }catch (\Exception $e) {
-            Log::error("Crawl movie detail failed ==> " . $e->getMessage());
-            return null;
-        }
-
     }
 
     private function getFileName(string $link) {
