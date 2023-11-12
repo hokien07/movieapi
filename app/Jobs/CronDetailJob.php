@@ -193,10 +193,16 @@ class CronDetailJob implements ShouldQueue
 
         if(!$item) {
             try {
-                Storage::cloud()->put("$movie->_id/$thumbName", file_get_contents($movie->thumb_url));
-                if($movie->poster_url) {
-                    Storage::cloud()->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
+                if(!isset($movie->poster_url)) {
+                    return null;
                 }
+                if(!isset($movie->thumb_url)) {
+                    return null;
+                }
+
+                Storage::cloud()->put("$movie->_id/$thumbName", file_get_contents($movie->thumb_url));
+                Storage::cloud()->put("$movie->_id/$posterName", file_get_contents($movie->poster_url));
+
                 return Movie::query()->create([
                     "server_id" => $movie->_id,
                     "name" => $movie->name,
@@ -228,6 +234,7 @@ class CronDetailJob implements ShouldQueue
                 return null;
             }
         }
+        return null;
     }
 
     private function getFileName(string $link) {
